@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------
 // <copyright file="IFilterBindingInSyntax.cs" company="bbv Software Services AG">
-//   Copyright (c) 2010 bbv Software Services AG
+//   Copyright (c) 2012 bbv Software Services AG
 //   Author: Remo Gloor (remo.gloor@gmail.com)
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
@@ -41,7 +41,7 @@ namespace Ninject.Web.WebApi.FilterBindingSyntax
 
         /// <summary>
         /// Indicates that instances activated via the binding should not be re-used, nor have
-        /// their lifecycle managed by Ninject.
+        /// their life cycle managed by Ninject.
         /// </summary>
         /// <returns>The fluent syntax to define more information</returns>
         IFilterBindingNamedWithOrOnSyntax<T> InTransientScope();

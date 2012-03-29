@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------
 // <copyright file="IFilterBindingWithSyntax.cs" company="bbv Software Services AG">
-//   Copyright (c) 2010 bbv Software Services AG
+//   Copyright (c) 2012 bbv Software Services AG
 //   Author: Remo Gloor (remo.gloor@gmail.com)
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
@@ -124,7 +124,7 @@ namespace Ninject.Web.WebApi.FilterBindingSyntax
         /// Indicates that the specified property should be injected with the specified value.
         /// </summary>
         /// <param name="name">The name of the property to override.</param>
-        /// <param name="callback">The cllback to retrieve the value.</param>
+        /// <param name="callback">The callback to retrieve the value.</param>
         /// <returns>The fluent syntax to define more information</returns>
         IFilterBindingWithOrOnSyntax<T> WithPropertyValue(
             string name,
@@ -136,7 +136,7 @@ namespace Ninject.Web.WebApi.FilterBindingSyntax
         /// </summary>
         /// <typeparam name="TAttribute">The type of the attribute.</typeparam>
         /// <param name="name">The name of the property to override.</param>
-        /// <param name="callback">The cllback to retrieve the value.</param>
+        /// <param name="callback">The callback to retrieve the value.</param>
         /// <returns>The fluent syntax to define more information</returns>
         IFilterBindingWithOrOnSyntax<T> WithPropertyValueFromActionAttribute<TAttribute>(
             string name,
@@ -149,7 +149,7 @@ namespace Ninject.Web.WebApi.FilterBindingSyntax
         /// </summary>
         /// <typeparam name="TAttribute">The type of the attribute.</typeparam>
         /// <param name="name">The name of the property to override.</param>
-        /// <param name="callback">The cllback to retrieve the value.</param>
+        /// <param name="callback">The callback to retrieve the value.</param>
         /// <returns>The fluent syntax to define more information</returns>
         IFilterBindingWithOrOnSyntax<T> WithPropertyValueFromControllerAttribute<TAttribute>(
             string name,

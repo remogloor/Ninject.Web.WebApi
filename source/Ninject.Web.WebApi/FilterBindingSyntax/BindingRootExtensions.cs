@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------
 // <copyright file="BindingRootExtensions.cs" company="bbv Software Services AG">
-//   Copyright (c) 2010 bbv Software Services AG
+//   Copyright (c) 2012 bbv Software Services AG
 //   Author: Remo Gloor (remo.gloor@gmail.com)
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,12 +27,12 @@ namespace Ninject.Web.WebApi.FilterBindingSyntax
     using Ninject.Web.WebApi.Filter;
 
     /// <summary>
-    /// Extension methods for IBindingRoot to define filter bindings.
+    /// Extension methods for <see cref="IBindingRoot"/> to define filter bindings.
     /// </summary>
     public static class BindingRootExtensions
     {
         /// <summary>
-        /// The key used to store the filter id in the binding metadata.
+        /// The key used to store the filter id in the binding meta data.
         /// </summary>
         public const string FilterIdMetadataKey = "FilterId";
 
@@ -42,9 +42,8 @@ namespace Ninject.Web.WebApi.FilterBindingSyntax
         /// <typeparam name="T">The type of the filter.</typeparam>
         /// <param name="kernel">The kernel.</param>
         /// <param name="scope">The filter scope.</param>
-        /// <param name="order">The filter order.</param>
         /// <returns>The fluent syntax to specify more information for the binding.</returns>
-        public static IFilterBindingWhenInNamedWithOrOnSyntax<T> BindFilter<T>(this IBindingRoot kernel, FilterScope scope, int? order)
+        public static IFilterBindingWhenInNamedWithOrOnSyntax<T> BindHttpFilter<T>(this IBindingRoot kernel, FilterScope scope)
             where T : IFilter
         {
             var filterId = Guid.NewGuid();
@@ -52,8 +51,8 @@ namespace Ninject.Web.WebApi.FilterBindingSyntax
             var filterBinding = kernel.Bind<T>().ToSelf();
             filterBinding.WithMetadata(FilterIdMetadataKey, filterId);
 
-            var ninjectFilterBinding = kernel.Bind<INinjectFilter>().ToConstructor<NinjectFilter<T>>(
-                x => new NinjectFilter<T>(x.Inject<IKernel>(), scope, order, filterId));
+            var ninjectFilterBinding = kernel.Bind<INinjectFilter>().ToConstructor(
+                x => new NinjectFilter<T>(x.Inject<IKernel>(), scope, filterId));
             return new FilterFilterBindingBuilder<T>(ninjectFilterBinding, filterBinding);
         }
 
@@ -64,13 +63,11 @@ namespace Ninject.Web.WebApi.FilterBindingSyntax
         /// <param name="kernel">The kernel.</param>
         /// <param name="newExpression">The expression that specifies the constructor.</param>
         /// <param name="scope">The scope.</param>
-        /// <param name="order">The order.</param>
         /// <returns>The fluent syntax.</returns>
-        public static IFilterBindingWhenInNamedWithOrOnSyntax<T> BindFilter<T>(
+        public static IFilterBindingWhenInNamedWithOrOnSyntax<T> BindHttpFilter<T>(
             this IBindingRoot kernel, 
             Expression<Func<IConstructorArgumentSyntax, T>> newExpression,
-            FilterScope scope,
-            int? order)
+            FilterScope scope)
             where T : IFilter
         {
             var filterId = Guid.NewGuid();
@@ -78,8 +75,8 @@ namespace Ninject.Web.WebApi.FilterBindingSyntax
             var filterBinding = kernel.Bind<T>().ToConstructor(newExpression);
             filterBinding.WithMetadata(FilterIdMetadataKey, filterId);
 
-            var ninjectFilterBinding = kernel.Bind<INinjectFilter>().ToConstructor<NinjectFilter<T>>(
-                x => new NinjectFilter<T>(x.Inject<IKernel>(), scope, order, filterId));
+            var ninjectFilterBinding = kernel.Bind<INinjectFilter>().ToConstructor(
+                x => new NinjectFilter<T>(x.Inject<IKernel>(), scope, filterId));
             return new FilterFilterBindingBuilder<T>(ninjectFilterBinding, filterBinding);
         }
     }

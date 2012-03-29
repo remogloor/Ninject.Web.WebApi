@@ -1,5 +1,5 @@
 ﻿//-------------------------------------------------------------------------------
-// <copyright file="HttpActionDescriptorExtensionMethods.cs" company="bbv Software Services AG">
+// <copyright file="ConfigurationFilterFilterProvider.cs" company="bbv Software Services AG">
 //   Copyright (c) 2012 bbv Software Services AG
 //   Author: Remo Gloor (remo.gloor@gmail.com)
 //
@@ -17,28 +17,35 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
-namespace Ninject.Web.WebApi.FilterBindingSyntax
+namespace Ninject.Web.WebApi.Filter
 {
-    using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Http.Controllers;
 
-    public static class HttpActionDescriptorExtensionMethods
+    using System.Web.Http;
+    using System.Web.Http.Controllers;
+    using System.Web.Http.Filters;
+
+    public class ConfigurationFilterFilterProvider : IFilterProvider
     {
-        public static IEnumerable<object> GetCustomAttributes(this HttpActionDescriptor actionDescriptor, Type type)
+        private readonly IKernel kernel;
+        private readonly IEnumerable<IFilterProvider> filterProviders;
+
+        public ConfigurationFilterFilterProvider(IKernel kernel, IEnumerable<IFilterProvider> filterProviders)
         {
-            return ((IEnumerable)typeof(HttpActionDescriptor)
-                                     .GetMethod("GetCustomAttributes").MakeGenericMethod(type)
-                                     .Invoke(actionDescriptor, new object[0])).Cast<object>();
+            this.kernel = kernel;
+            this.filterProviders = filterProviders;
         }
-    
-        public static IEnumerable<object> GetCustomAttributes(this HttpControllerDescriptor actionDescriptor, Type type)
+
+        public IEnumerable<Filter> GetFilters(HttpConfiguration configuration, HttpActionDescriptor actionDescriptor)
         {
-            return ((IEnumerable)typeof(HttpControllerDescriptor)
-                                     .GetMethod("GetCustomAttributes").MakeGenericMethod(type)
-                                     .Invoke(actionDescriptor, new object[0])).Cast<object>();
+            var filters = this.filterProviders.SelectMany(fp => fp.GetFilters(configuration, actionDescriptor)).ToList();
+            foreach (var filter in filters)
+            {
+                this.kernel.Inject(filter.Instance);
+            }
+
+            return filters;
         }
     }
 }

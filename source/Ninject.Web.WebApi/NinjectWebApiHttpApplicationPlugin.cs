@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------
 // <copyright file="NinjectWebApiHttpApplicationPlugin.cs" company="bbv Software Services AG">
-//   Copyright (c) 2011 bbv Software Services AG
+//   Copyright (c) 2012 bbv Software Services AG
 //   Author: Remo Gloor (remo.gloor@gmail.com)
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,6 @@ namespace Ninject.Web.WebApi
 {
     using System.Web;
     using System.Web.Http;
-    using System.Web.Http.Filters;
     using System.Web.Http.Services;
     using System.Web.Http.Validation.Providers;
 
@@ -48,23 +47,6 @@ namespace Ninject.Web.WebApi
         }
 
         /// <summary>
-        /// Starts this instance.
-        /// </summary>
-        public void Start()
-        {
-            ModelValidatorProviders.Providers.Remove(ModelValidatorProviders.Providers.OfType<DataAnnotationsModelValidatorProvider>().Single());
-            GlobalConfiguration.Configuration.ServiceResolver.SetResolver(this.CreateDependencyResolver());
-            RemoveDefaultAttributeFilterProvider();
-        }
-
-        /// <summary>
-        /// Stops this instance.
-        /// </summary>
-        public void Stop()
-        {
-        }
-
-        /// <summary>
         /// Gets the request scope.
         /// </summary>
         /// <value>The request scope.</value>
@@ -75,6 +57,21 @@ namespace Ninject.Web.WebApi
                 return HttpContext.Current;
             }
         }
+        
+        /// <summary>
+        /// Starts this instance.
+        /// </summary>
+        public void Start()
+        {
+            GlobalConfiguration.Configuration.ServiceResolver.SetResolver(this.CreateDependencyResolver());
+        }
+
+        /// <summary>
+        /// Stops this instance.
+        /// </summary>
+        public void Stop()
+        {
+        }
 
         /// <summary>
         /// Creates the controller factory that is used to create the controllers.
@@ -83,16 +80,6 @@ namespace Ninject.Web.WebApi
         protected IDependencyResolver CreateDependencyResolver()
         {
             return this.kernel.Get<IDependencyResolver>();
-        }
-
-        /// <summary>
-        /// Removes the default attribute filter provider.
-        /// </summary>
-        private static void RemoveDefaultAttributeFilterProvider()
-        {
-            GlobalConfiguration.Configuration.ServiceResolver.GetFilterProviders();
-            var oldFilter = System.Web.Http.Filters.ActionDescriptorFilterProvider FilterProviders.Providers.Single(f => f is FilterAttributeFilterProvider);
-            FilterProviders.Providers.Remove(oldFilter);
         }
     }
 }

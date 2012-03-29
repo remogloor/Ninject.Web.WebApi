@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------
 // <copyright file="NinjectFilter.cs" company="bbv Software Services AG">
-//   Copyright (c) 2010 bbv Software Services AG
+//   Copyright (c) 2012 bbv Software Services AG
 //   Author: Remo Gloor (remo.gloor@gmail.com)
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
@@ -37,14 +37,9 @@ namespace Ninject.Web.WebApi.Filter
         private readonly IKernel kernel;
 
         /// <summary>
-        /// Teh filter scope.
+        /// The filter scope.
         /// </summary>
         private readonly FilterScope scope;
-
-        /// <summary>
-        /// The filter order.
-        /// </summary>
-        private readonly int? order;
 
         private readonly Guid filterId;
 
@@ -53,13 +48,11 @@ namespace Ninject.Web.WebApi.Filter
         /// </summary>
         /// <param name="kernel">The kernel.</param>
         /// <param name="scope">The filter scope.</param>
-        /// <param name="order">The filter order.</param>
         /// <param name="filterId">The filter id.</param>
-        public NinjectFilter(IKernel kernel, FilterScope scope, int? order, Guid filterId)
+        public NinjectFilter(IKernel kernel, FilterScope scope, Guid filterId)
         {
             this.kernel = kernel;
             this.scope = scope;
-            this.order = order;
             this.filterId = filterId;
         }
 

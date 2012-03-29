@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------
 // <copyright file="INinjectFilter.cs" company="bbv Software Services AG">
-//   Copyright (c) 2010 bbv Software Services AG
+//   Copyright (c) 2012 bbv Software Services AG
 //   Author: Remo Gloor (remo.gloor@gmail.com)
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,7 @@ namespace Ninject.Web.WebApi.Filter
     using System.Web.Http.Filters;
 
     /// <summary>
-    /// Used by the NinjectFilterProvider to get injected filters.
+    /// Used by the <see cref="NinjectFilterProvider"/> to get injected filters.
     /// </summary>
     public interface INinjectFilter
     {
