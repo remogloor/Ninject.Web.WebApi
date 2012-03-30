@@ -5,7 +5,7 @@
     <version>3.0.0.0</version>
     <authors>Remo Gloor</authors>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <licenseUrl>https://github.com/ninject/ninject.web.webapi/raw/master/mvc3/LICENSE.txt</licenseUrl>
+    <licenseUrl>https://github.com/ninject/ninject.web.webapi/raw/master/LICENSE.txt</licenseUrl>
     <description>Extension for Ninject providing integration with ASP.NET MVC WebAPI</description>
     <summary>Extension for Ninject providing integration with ASP.NET MVC WebAPI</summary>
     <language>en-US</language>

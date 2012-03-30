@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Ninject.Web.WebApi")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Adds support for the MVC Web API to Ninject")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
