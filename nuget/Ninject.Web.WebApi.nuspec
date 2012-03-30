@@ -15,6 +15,7 @@
     <dependencies>
       <dependency id="Ninject" version="3.0.0.0" />
       <dependency id="Ninject.Web.Common" version="3.0.0.0" />
+      <dependency id="AspNetWebApi" version="[4.0.20126.16343,)" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="Microsoft.Web.Infrastructure" targetFramework="net40" />
