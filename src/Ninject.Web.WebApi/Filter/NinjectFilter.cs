@@ -41,6 +41,9 @@ namespace Ninject.Web.WebApi.Filter
         /// </summary>
         private readonly FilterScope scope;
 
+        /// <summary>
+        /// The id of the filter
+        /// </summary>
         private readonly Guid filterId;
 
         /// <summary>

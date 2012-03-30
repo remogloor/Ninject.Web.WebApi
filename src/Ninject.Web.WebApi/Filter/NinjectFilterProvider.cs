@@ -44,6 +44,12 @@ namespace Ninject.Web.WebApi.Filter
             this.kernel = kernel;
         }
 
+        /// <summary>
+        /// Gets the filters configured in Ninject.
+        /// </summary>
+        /// <param name="configuration">The configuration.</param>
+        /// <param name="actionDescriptor">The action descriptor.</param>
+        /// <returns>The filters configured in Ninject.</returns>
         public IEnumerable<Filter> GetFilters(HttpConfiguration configuration, HttpActionDescriptor actionDescriptor)
         {
             var parameter = new FilterContextParameter(configuration, actionDescriptor);

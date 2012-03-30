@@ -114,7 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="Controllers\FilterInjectionExample\ApiMovieController.cs" />
+    <Compile Include="Controllers\FilterInjectionExample\MovieController.cs" />
     <Compile Include="Controllers\FilterInjectionExample\CacheAttribute.cs" />
     <Compile Include="Controllers\FilterInjectionExample\ClearCacheOnSuccessAttribute.cs" />
     <Compile Include="Controllers\FilterInjectionExample\DistributedCacheFilter.cs" />
@@ -127,7 +127,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Movie\Movies.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

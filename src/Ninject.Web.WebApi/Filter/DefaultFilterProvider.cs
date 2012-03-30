@@ -1,5 +1,5 @@
 ﻿//-------------------------------------------------------------------------------
-// <copyright file="ConfigurationFilterFilterProvider.cs" company="bbv Software Services AG">
+// <copyright file="DefaultFilterProvider.cs" company="bbv Software Services AG">
 //   Copyright (c) 2012 bbv Software Services AG
 //   Author: Remo Gloor (remo.gloor@gmail.com)
 //
@@ -26,17 +26,31 @@ namespace Ninject.Web.WebApi.Filter
     using System.Web.Http.Controllers;
     using System.Web.Http.Filters;
 
-    public class ConfigurationFilterFilterProvider : IFilterProvider
+    /// <summary>
+    /// Provider for the default filters.
+    /// </summary>
+    public class DefaultFilterProvider : IFilterProvider
     {
         private readonly IKernel kernel;
         private readonly IEnumerable<IFilterProvider> filterProviders;
 
-        public ConfigurationFilterFilterProvider(IKernel kernel, IEnumerable<IFilterProvider> filterProviders)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DefaultFilterProvider"/> class.
+        /// </summary>
+        /// <param name="kernel">The kernel.</param>
+        /// <param name="filterProviders">The filter providers.</param>
+        public DefaultFilterProvider(IKernel kernel, IEnumerable<IFilterProvider> filterProviders)
         {
             this.kernel = kernel;
             this.filterProviders = filterProviders;
         }
 
+        /// <summary>
+        /// Gets and injects the default filters.
+        /// </summary>
+        /// <param name="configuration">The configuration.</param>
+        /// <param name="actionDescriptor">The action descriptor.</param>
+        /// <returns>The default filters.</returns>
         public IEnumerable<Filter> GetFilters(HttpConfiguration configuration, HttpActionDescriptor actionDescriptor)
         {
             var filters = this.filterProviders.SelectMany(fp => fp.GetFilters(configuration, actionDescriptor)).ToList();

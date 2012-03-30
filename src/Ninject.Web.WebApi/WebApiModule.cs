@@ -43,7 +43,7 @@ namespace Ninject.Web.WebApi
             base.Load();
             this.Kernel.Components.Add<INinjectHttpApplicationPlugin, NinjectWebApiHttpApplicationPlugin>();
             this.Kernel.Bind<IDependencyResolver>().To<NinjectDependencyResolver>();
-            this.Kernel.Bind<IFilterProvider>().ToConstant(new ConfigurationFilterFilterProvider(this.Kernel, GlobalConfiguration.Configuration.ServiceResolver.GetFilterProviders()));
+            this.Kernel.Bind<IFilterProvider>().ToConstant(new DefaultFilterProvider(this.Kernel, GlobalConfiguration.Configuration.ServiceResolver.GetFilterProviders()));
             this.Kernel.Bind<IFilterProvider>().To<NinjectFilterProvider>();
             this.Kernel.Bind<RouteCollection>().ToConstant(RouteTable.Routes);
             this.Kernel.Bind<HttpContext>().ToMethod(ctx => HttpContext.Current).InTransientScope();

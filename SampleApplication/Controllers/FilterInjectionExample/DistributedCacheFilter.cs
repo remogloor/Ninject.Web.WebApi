@@ -56,6 +56,18 @@ namespace SampleApplication.Controllers.FilterInjectionExample
         }
 
         /// <summary>
+        /// Gets a value indicating whether this filter can occur multiple times.
+        /// </summary>
+        /// <value>True if the filter can occur multiple times, False otherwise.</value>
+        public override bool AllowMultiple
+        {
+            get
+            {
+                return false;
+            }
+        }
+        
+        /// <summary>
         /// Called before an action method executes.
         /// Gets the cached result if available.
         /// </summary>
@@ -74,14 +86,6 @@ namespace SampleApplication.Controllers.FilterInjectionExample
                     };
 
                 actionContext.Response.Content.Headers.ContentType = result.ContentType;
-            }
-        }
-
-        public override bool AllowMultiple
-        {
-            get
-            {
-                return false;
             }
         }
 
@@ -128,9 +132,13 @@ namespace SampleApplication.Controllers.FilterInjectionExample
         private class Response
         {
             public HttpStatusCode StatusCode { get; set; }
+
             public string ReasonPhrase { get; set; }
+            
             public Version Version { get; set; }
+            
             public byte[] Content { get; set; }
+            
             public MediaTypeHeaderValue ContentType { get; set; }
         }
     }

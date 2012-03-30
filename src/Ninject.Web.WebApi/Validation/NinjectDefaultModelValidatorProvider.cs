@@ -26,15 +26,30 @@ namespace Ninject.Web.WebApi.Validation
     using System.Web.Http.Validation.Providers;
     using System.Web.Http.Validation.Validators;
 
+    /// <summary>
+    /// Provides the validators provided by the default model validator providers.
+    /// </summary>
     public class NinjectDefaultModelValidatorProvider : ModelValidatorProvider
     {
+        /// <summary>
+        /// The ninject kernel.
+        /// </summary>
         private readonly IKernel kernel;
-        private readonly IEnumerable<ModelValidatorProvider> defaultModelValidators;
 
-        public NinjectDefaultModelValidatorProvider(IKernel kernel, IEnumerable<ModelValidatorProvider> defaultModelValidators)
+        /// <summary>
+        /// The default model validator providers.
+        /// </summary>
+        private readonly IEnumerable<ModelValidatorProvider> defaultModelValidatorProviders;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NinjectDefaultModelValidatorProvider"/> class.
+        /// </summary>
+        /// <param name="kernel">The kernel.</param>
+        /// <param name="defaultModelValidatorProviders">The default model validator providers.</param>
+        public NinjectDefaultModelValidatorProvider(IKernel kernel, IEnumerable<ModelValidatorProvider> defaultModelValidatorProviders)
         {
             this.kernel = kernel;
-            this.defaultModelValidators = defaultModelValidators.ToList();
+            this.defaultModelValidatorProviders = defaultModelValidatorProviders.ToList();
             DataAnnotationsModelValidatorProvider.RegisterDefaultAdapterFactory(
                 ((metadata, context, attribute) =>
                     {
@@ -43,9 +58,15 @@ namespace Ninject.Web.WebApi.Validation
                     }));
         }
 
+        /// <summary>
+        /// Gets the validators.
+        /// </summary>
+        /// <param name="metadata">The metadata.</param>
+        /// <param name="actionContext">The action context.</param>
+        /// <returns>The validators returned by the default validator providers.</returns>
         public override IEnumerable<ModelValidator> GetValidators(ModelMetadata metadata, HttpActionContext actionContext)
         {
-            var validators = this.defaultModelValidators.SelectMany(provider => provider.GetValidators(metadata, actionContext)).ToList();
+            var validators = this.defaultModelValidatorProviders.SelectMany(provider => provider.GetValidators(metadata, actionContext)).ToList();
             foreach (var modelValidator in validators)
             {
                 this.kernel.Inject(modelValidator);

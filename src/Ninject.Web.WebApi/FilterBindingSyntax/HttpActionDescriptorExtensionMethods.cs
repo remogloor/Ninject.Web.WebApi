@@ -25,15 +25,30 @@ namespace Ninject.Web.WebApi.FilterBindingSyntax
     using System.Linq;
     using System.Web.Http.Controllers;
 
+    /// <summary>
+    /// Extension methods for the http action descriptor
+    /// </summary>
     public static class HttpActionDescriptorExtensionMethods
     {
+        /// <summary>
+        /// Gets the custom attributes of the specified type.
+        /// </summary>
+        /// <param name="actionDescriptor">The action descriptor.</param>
+        /// <param name="type">The type of the attribute.</param>
+        /// <returns>The custom attributes of the specified type.</returns>
         public static IEnumerable<object> GetCustomAttributes(this HttpActionDescriptor actionDescriptor, Type type)
         {
             return ((IEnumerable)typeof(HttpActionDescriptor)
                                      .GetMethod("GetCustomAttributes").MakeGenericMethod(type)
                                      .Invoke(actionDescriptor, new object[0])).Cast<object>();
         }
-    
+
+        /// <summary>
+        /// Gets the custom attributes of the specified type.
+        /// </summary>
+        /// <param name="actionDescriptor">The action descriptor.</param>
+        /// <param name="type">The type of the attribute.</param>
+        /// <returns>The custom attributes of the specified type.</returns>
         public static IEnumerable<object> GetCustomAttributes(this HttpControllerDescriptor actionDescriptor, Type type)
         {
             return ((IEnumerable)typeof(HttpControllerDescriptor)

@@ -48,6 +48,10 @@ namespace SampleApplication.Controllers.FilterInjectionExample
             this.prefix = prefix;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this filter can occur multiple times.
+        /// </summary>
+        /// <value>True if the filter can occur multiple times, False otherwise.</value>
         public override bool AllowMultiple
         {
             get
