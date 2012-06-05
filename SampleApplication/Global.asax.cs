@@ -21,7 +21,7 @@
             routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional, controller = "values" }); 
+                defaults: new { id = System.Web.Http.RouteParameter.Optional, controller = "values" }); 
         }
 
         protected void Application_Start()

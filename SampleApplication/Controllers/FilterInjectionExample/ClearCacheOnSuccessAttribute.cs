@@ -60,7 +60,7 @@ namespace SampleApplication.Controllers.FilterInjectionExample
         /// <param name="actionExecutedContext">The action executed context.</param>
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-            if (actionExecutedContext.Result.IsSuccessStatusCode)
+            if (actionExecutedContext.Response.IsSuccessStatusCode)
             {
                 this.CacheService.ClearEntry(string.Format(
                     "{0}.{1}",

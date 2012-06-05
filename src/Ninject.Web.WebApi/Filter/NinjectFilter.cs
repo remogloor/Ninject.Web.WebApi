@@ -64,9 +64,9 @@ namespace Ninject.Web.WebApi.Filter
         /// </summary>
         /// <param name="parameter">The parameter.</param>
         /// <returns>The created filter.</returns>
-        public Filter BuildFilter(FilterContextParameter parameter)
+        public FilterInfo BuildFilter(FilterContextParameter parameter)
         {
-            return new Filter(
+            return new FilterInfo(
                 this.kernel.Get<T>(m => m.Get(BindingRootExtensions.FilterIdMetadataKey, Guid.Empty).Equals(this.filterId), parameter), 
                 this.scope);
         }

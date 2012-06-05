@@ -96,7 +96,7 @@ namespace SampleApplication.Controllers.FilterInjectionExample
         /// <param name="actionExecutedContext">The action executed context.</param>
         public override void OnActionExecuted(System.Web.Http.Filters.HttpActionExecutedContext actionExecutedContext)
         {
-            var resultContent = actionExecutedContext.Result.Content.ReadAsStreamAsync();
+            var resultContent = actionExecutedContext.Response.Content.ReadAsStreamAsync();
             resultContent.Wait();
             var stream = resultContent.Result;
             stream.Position = 0;
@@ -107,11 +107,11 @@ namespace SampleApplication.Controllers.FilterInjectionExample
                 GetKey(actionExecutedContext.ActionContext.ActionDescriptor),
                 new Response
                     {
-                        StatusCode = actionExecutedContext.Result.StatusCode,
-                        ReasonPhrase = actionExecutedContext.Result.ReasonPhrase,
-                        Version = actionExecutedContext.Result.Version,
+                        StatusCode = actionExecutedContext.Response.StatusCode,
+                        ReasonPhrase = actionExecutedContext.Response.ReasonPhrase,
+                        Version = actionExecutedContext.Response.Version,
                         Content = content,
-                        ContentType = actionExecutedContext.Result.Content.Headers.ContentType,
+                        ContentType = actionExecutedContext.Response.Content.Headers.ContentType,
                 },
                 this.expirationTime);
         }

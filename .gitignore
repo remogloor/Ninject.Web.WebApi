@@ -2,6 +2,7 @@
 /dist/*
 obj
 Bin
+bin
 *.user
 *.suo
 *.dotCover
@@ -10,3 +11,7 @@ _ReSharper.Ninject.Web.WebApi
 /lib/Ninject/*/**
 /lib/Ninject.Web.Common/*.zip
 /lib/Ninject.Web.Common/*/**
+/lib/Ninject.Extensions.NamedScope/*.zip
+/lib/Ninject.Extensions.NamedScope/*/**
+/lib/Ninject.Extensions.ContextPreservation/*.zip
+/lib/Ninject.Extensions.ContextPreservation/*/**

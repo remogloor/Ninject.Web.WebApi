@@ -8,7 +8,7 @@
 	<property name="product.platforms" value="net-4.0,net-4.5"  overwrite="false"/>
 	<property name="product.buildserverPlatforms" value="net-4.0"  overwrite="false"/>
 	<property name="product.packagePostfix" value="4" overwrite="false"/>
-	<property name="dependencies" value="Ninject,Ninject.Web.Common"  overwrite="false"/>
+	<property name="dependencies" value="Ninject,Ninject.Web.Common,Ninject.Extensions.NamedScope,Ninject.Extensions.ContextPreservation"  overwrite="false"/>
 
 	<include buildfile="Ninject.include" />
 	<target name="all" depends="core"/>

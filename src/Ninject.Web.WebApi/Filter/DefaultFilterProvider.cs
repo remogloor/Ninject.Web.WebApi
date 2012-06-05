@@ -51,7 +51,7 @@ namespace Ninject.Web.WebApi.Filter
         /// <param name="configuration">The configuration.</param>
         /// <param name="actionDescriptor">The action descriptor.</param>
         /// <returns>The default filters.</returns>
-        public IEnumerable<Filter> GetFilters(HttpConfiguration configuration, HttpActionDescriptor actionDescriptor)
+        public IEnumerable<FilterInfo> GetFilters(HttpConfiguration configuration, HttpActionDescriptor actionDescriptor)
         {
             var filters = this.filterProviders.SelectMany(fp => fp.GetFilters(configuration, actionDescriptor)).ToList();
             foreach (var filter in filters)

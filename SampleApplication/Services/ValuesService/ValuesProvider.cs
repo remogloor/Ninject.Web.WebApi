@@ -21,10 +21,12 @@
 
 namespace SampleApplication.Services.ValuesService
 {
+    using System;
+
     /// <summary>
     /// Provides the values
     /// </summary>
-    public class ValuesProvider : IValuesProvider
+    public class ValuesProvider : IValuesProvider, IDisposable
     {
         /// <summary>
         /// Gets the values.
@@ -33,6 +35,10 @@ namespace SampleApplication.Services.ValuesService
         public string[] GetValues()
         {
             return new[] { "value1", "value2" };
+        }
+
+        public void Dispose()
+        {
         }
     }
 }
