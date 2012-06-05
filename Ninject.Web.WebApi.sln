@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ninject.Web.WebApi", "src\Ninject.Web.WebApi\Ninject.Web.WebApi.csproj", "{F8980B1F-899E-4C2D-A0DC-E76DB52DAA03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication", "SampleApplication\SampleApplication.csproj", "{776D2ADD-1AC3-4219-8F95-6E581A7439E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication", "src\SampleApplication\SampleApplication.csproj", "{776D2ADD-1AC3-4219-8F95-6E581A7439E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

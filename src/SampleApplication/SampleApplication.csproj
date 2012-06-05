@@ -148,7 +148,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Ninject.Web.WebApi\Ninject.Web.WebApi.csproj">
+    <ProjectReference Include="..\Ninject.Web.WebApi\Ninject.Web.WebApi.csproj">
       <Project>{F8980B1F-899E-4C2D-A0DC-E76DB52DAA03}</Project>
       <Name>Ninject.Web.WebApi</Name>
     </ProjectReference>
