@@ -26,14 +26,14 @@ namespace Ninject.Web.WebApi
     using System.Linq;
     using System.Web.Http.Dependencies;
 
-    using Ninject.Extensions.NamedScope;
+    using Ninject.Infrastructure.Disposal;
     using Ninject.Parameters;
     using Ninject.Syntax;
 
     /// <summary>
     /// Dependency Scope implementation for ninject
     /// </summary>
-    public class NinjectDependencyScope : DisposeNotifyingObject, IDependencyScope
+    public class NinjectDependencyScope : DisposableObject, IDependencyScope
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NinjectDependencyScope"/> class.
@@ -48,7 +48,11 @@ namespace Ninject.Web.WebApi
         /// Gets the resolution root.
         /// </summary>
         /// <value>The resolution root.</value>
-        protected IResolutionRoot ResolutionRoot { get; private set; }
+        protected IResolutionRoot ResolutionRoot
+        {
+            get; 
+            private set;
+        }
 
         /// <summary>
         /// Gets the service of the specified type.

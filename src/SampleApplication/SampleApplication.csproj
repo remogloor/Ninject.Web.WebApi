@@ -157,6 +157,7 @@
     <EntityDeploy Include="Models\Movie\Movies.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Movies.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>SampleApplication.Models.Movie</CustomToolNamespace>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>

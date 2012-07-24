@@ -22,6 +22,9 @@
 namespace SampleApplication.Controllers.ControllerInjectionExample
 {
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
     using System.Web.Http;
 
     using SampleApplication.Services.ValuesService;
@@ -31,15 +34,17 @@ namespace SampleApplication.Controllers.ControllerInjectionExample
     /// </summary>
     public class ValuesController : ApiController
     {
-        private readonly IValuesProvider valuesProvider;
+        private readonly IValuesProvider valuesProvider1;
+        private readonly IValuesProvider valuesProvider2;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ValuesController"/> class.
         /// </summary>
         /// <param name="valuesProvider">The values provider.</param>
-        public ValuesController(IValuesProvider valuesProvider)
+        public ValuesController(IValuesProvider valuesProvider1, IValuesProvider valuesProvider2)
         {
-            this.valuesProvider = valuesProvider;
+            this.valuesProvider1 = valuesProvider1;
+            this.valuesProvider2 = valuesProvider2;
         }
 
         /// <summary>
@@ -48,7 +53,7 @@ namespace SampleApplication.Controllers.ControllerInjectionExample
         /// <returns>The values</returns>
         public IEnumerable<string> Get()
         {
-            return this.valuesProvider.GetValues();
+            return this.valuesProvider1.GetValues().Union(this.valuesProvider2.GetValues());
         }
     }
 }

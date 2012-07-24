@@ -8,15 +8,15 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
-
 namespace SampleApplication.Models.Movie
 {
     #region Contexts
@@ -82,6 +82,7 @@ namespace SampleApplication.Models.Movie
         private ObjectSet<Movies> _Movies;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -93,11 +94,11 @@ namespace SampleApplication.Models.Movie
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -122,6 +123,7 @@ namespace SampleApplication.Models.Movie
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -228,7 +230,6 @@ namespace SampleApplication.Models.Movie
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        [PriceRangeAttribute()] // for WebAPI
         public Nullable<global::System.Decimal> Price
         {
             get
@@ -249,9 +250,11 @@ namespace SampleApplication.Models.Movie
         partial void OnPriceChanged();
 
         #endregion
+
     
     }
 
     #endregion
+
     
 }

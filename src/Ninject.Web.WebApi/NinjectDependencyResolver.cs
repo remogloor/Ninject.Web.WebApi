@@ -40,7 +40,7 @@ namespace Ninject.Web.WebApi
         /// Begins the scope.
         /// </summary>
         /// <returns>The new scope</returns>
-        public IDependencyScope BeginScope()
+        public virtual IDependencyScope BeginScope()
         {
             return this;
         }

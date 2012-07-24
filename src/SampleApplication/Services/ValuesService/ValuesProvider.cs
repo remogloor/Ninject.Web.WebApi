@@ -22,19 +22,24 @@
 namespace SampleApplication.Services.ValuesService
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Provides the values
     /// </summary>
     public class ValuesProvider : IValuesProvider, IDisposable
     {
+        private int value = 1;
+
         /// <summary>
         /// Gets the values.
         /// </summary>
         /// <returns>The values</returns>
-        public string[] GetValues()
+        public IEnumerable<string> GetValues()
         {
-            return new[] { "value1", "value2" };
+            yield return "Value" + this.value++;
+            yield return "Value" + this.value++;
+            yield return "Value" + this.value++;
         }
 
         public void Dispose()

@@ -21,6 +21,8 @@
 
 namespace SampleApplication.Services.ValuesService
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Provides the values
     /// </summary>
@@ -30,6 +32,6 @@ namespace SampleApplication.Services.ValuesService
         /// Gets the values.
         /// </summary>
         /// <returns>The values</returns>
-        string[] GetValues();
+        IEnumerable<string> GetValues();
     }
 }

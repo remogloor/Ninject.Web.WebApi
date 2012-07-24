@@ -23,11 +23,9 @@ namespace Ninject.Web.WebApi
     using System.Web.Http;
     using System.Web.Http.Dependencies;
     using System.Web.Http.Filters;
-    using System.Web.Http.Services;
     using System.Web.Http.Validation;
     using System.Web.Routing;
 
-    using Ninject.Extensions.NamedScope;
     using Ninject.Web.Common;
     using Ninject.Web.WebApi.Filter;
     using Ninject.Web.WebApi.Validation;
@@ -39,8 +37,6 @@ namespace Ninject.Web.WebApi
     /// </summary>
     public class WebApiModule : GlobalKernelRegistrationModule<OnePerRequestHttpModule>
     {
-        internal const string WebAPIScopeName = "Ninject_WebAPIScope";
-
         /// <summary>
         /// Loads the module into the kernel.
         /// </summary>
@@ -48,9 +44,9 @@ namespace Ninject.Web.WebApi
         {
             base.Load();
             this.Kernel.Components.Add<INinjectHttpApplicationPlugin, NinjectWebApiHttpApplicationPlugin>();
+            this.Kernel.Components.Add<IWebApiRequestScopeProvider, DefaultWebApiRequestScopeProvider>();
             
             this.Bind<IDependencyResolver>().To<NinjectDependencyResolver>();
-            this.Bind<NinjectDependencyScope>().ToSelf().DefinesNamedScope(WebAPIScopeName);
             
             this.Bind<IFilterProvider>().ToConstant(new DefaultFilterProvider(this.Kernel, GlobalConfiguration.Configuration.Services.GetFilterProviders()));
             this.Bind<IFilterProvider>().To<NinjectFilterProvider>();
