@@ -58,7 +58,7 @@ namespace Ninject.Web.WebApi.Validation
         /// Gets a list of validators.
         /// </summary>
         /// <param name="metadata">The metadata.</param>
-        /// <param name="actionContext">The context.</param>
+        /// <param name="validatorProviders">The validator providers.</param>
         /// <param name="attributes">The list of validation attributes.</param>
         /// <returns>A list of validators.</returns>
         protected override IEnumerable<ModelValidator> GetValidators(ModelMetadata metadata, IEnumerable<ModelValidatorProvider> validatorProviders, IEnumerable<Attribute> attributes)

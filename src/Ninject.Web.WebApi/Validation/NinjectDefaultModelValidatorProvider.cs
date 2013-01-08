@@ -23,7 +23,6 @@ namespace Ninject.Web.WebApi.Validation
     using System.Web.Http.Metadata;
     using System.Web.Http.Validation;
     using System.Web.Http.Validation.Providers;
-    using System.Web.Http.Validation.Validators;
 
     /// <summary>
     /// Provides the validators provided by the default model validator providers.
@@ -64,8 +63,10 @@ namespace Ninject.Web.WebApi.Validation
         /// Gets the validators.
         /// </summary>
         /// <param name="metadata">The metadata.</param>
-        /// <param name="actionContext">The action context.</param>
-        /// <returns>The validators returned by the default validator providers.</returns>
+        /// <param name="validatorProviders">The validator providers.</param>
+        /// <returns>
+        /// The validators returned by the default validator providers.
+        /// </returns>
         public override IEnumerable<ModelValidator> GetValidators(ModelMetadata metadata, IEnumerable<ModelValidatorProvider> validatorProviders)
         {
             var validators = this.defaultModelValidatorProviders.SelectMany(provider => provider.GetValidators(metadata, validatorProviders)).ToList();

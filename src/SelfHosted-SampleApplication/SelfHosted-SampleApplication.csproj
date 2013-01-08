@@ -54,6 +54,9 @@
     <Reference Include="Ninject.Web.Common">
       <HintPath>..\..\lib\Ninject.Web.Common\net-4.0\Ninject.Web.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Web.Common.SelfHost">
+      <HintPath>..\..\lib\Ninject.Web.Common\net-4.0\extensions\Ninject.Web.Common.SelfHost.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />

@@ -1,44 +1,73 @@
-namespace SelfHosted_SampleApplication
+//-------------------------------------------------------------------------------
+// <copyright file="NinjectWebApiSelfHost.cs" company="Ninject Project Contributors">
+//   Copyright (c) 2009-2012 Ninject Project Contributors
+//   Authors: Remo Gloor (remo.gloor@gmail.com)
+//           
+//   Dual-licensed under the Apache License, Version 2.0, and the Microsoft Public License (Ms-PL).
+//   you may not use this file except in compliance with one of the Licenses.
+//   You may obtain a copy of the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//   or
+//       http://www.microsoft.com/opensource/licenses.mspx
+//
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
+// </copyright>
+//-------------------------------------------------------------------------------
+
+namespace Ninject.Web.WebApi.Selfhost
 {
     using System;
-    using System.Web.Http;
     using System.Web.Http.SelfHost;
 
-    using Ninject;
-    using Ninject.Web.Common;
+    using Ninject.Web.Common.SelfHost;
 
-    public class NinjectWebApiSelfHost : IDisposable
+    /// <summary>
+    /// Web API self host for ninject web common
+    /// </summary>
+    public class NinjectWebApiSelfHost : INinjectSelfHost, IDisposable
     {
-        private Bootstrapper bootstrapper;
-        private HttpSelfHostServer server;
+        /// <summary>
+        /// The self host server.
+        /// </summary>
+        private readonly HttpSelfHostServer server;
 
-        public NinjectWebApiSelfHost(string baseAddress, IKernel kernel)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NinjectWebApiSelfHost"/> class.
+        /// </summary>
+        /// <param name="httpSelfHostConfiguration">The HTTP self host configuration.</param>
+        public NinjectWebApiSelfHost(HttpSelfHostConfiguration httpSelfHostConfiguration)
         {
-            this.HttpConfiguration = new HttpSelfHostConfiguration(baseAddress);
-            this.bootstrapper = new Bootstrapper();
-
-            kernel.Bind<HttpConfiguration>().ToConstant(this.HttpConfiguration);
-            this.bootstrapper.Initialize(() => kernel);
-
-            this.server = new HttpSelfHostServer(this.HttpConfiguration);
+            this.server = new HttpSelfHostServer(httpSelfHostConfiguration);
         }
 
-        public HttpSelfHostConfiguration HttpConfiguration { get; private set; }
-
+        /// <summary>
+        /// Starts this instance.
+        /// </summary>
         public void Start()
         {
             this.server.OpenAsync().Wait();
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             this.Dispose(true);
         }
 
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        /// <param name="disposable"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected void Dispose(bool disposable)
         {
             this.server.Dispose();
-            this.bootstrapper.ShutDown();
         }
     }
 }

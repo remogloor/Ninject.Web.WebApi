@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-    <id>Ninject.Web.WebApi</id>
+    <id>Ninject.Web.WebApi.WebHost</id>
     <version>3.0.0.0</version>
     <authors>Remo Gloor</authors>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <licenseUrl>https://github.com/ninject/ninject.web.webapi/raw/master/LICENSE.txt</licenseUrl>
-    <description>Extension for Ninject providing integration with ASP.NET MVC WebAPI</description>
-    <summary>Extension for Ninject providing integration with ASP.NET MVC WebAPI</summary>
+    <description>Extension for Ninject providing integration with ASP.NET MVC WebAPI WebHost</description>
+    <summary>Extension for Ninject providing integration with ASP.NET MVC WebAPI WebHost</summary>
     <language>en-US</language>
-    <tags>Ninject ioc di web mvc api</tags>
+    <tags>Ninject ioc di web mvc api webhost</tags>
     <iconUrl>https://github.com/ninject/ninject/raw/master/logos/Ninject-Logo32.png</iconUrl>
     <projectUrl>http://www.ninject.org</projectUrl>
     <dependencies>
-      <dependency id="Ninject" version="3.0.0.0" />
-      <dependency id="Ninject.Web.Common" version="3.0.0.0" />
-      <dependency id="Microsoft.AspNet.WebApi" version="[4.0.20710.0,4.1)" />
+      <dependency id="Ninject.Web.Common.WebHost" version="3.0.0.0" />
+      <dependency id="Ninject.Web.WebApi" version="3.0.0.0" />
+      <dependency id="Microsoft.AspNet.WebApi.WebHost" version="[4.0.20710.0,4.1)" />
     </dependencies>
   </metadata>
 </package>

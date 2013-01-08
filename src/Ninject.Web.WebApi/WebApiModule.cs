@@ -30,8 +30,6 @@ namespace Ninject.Web.WebApi
     using Ninject.Web.WebApi.Filter;
     using Ninject.Web.WebApi.Validation;
 
-    //using Ninject.Web.WebApi.Validation;
-
     /// <summary>
     /// Defines the bindings and plugins of the MVC web extension.
     /// </summary>
