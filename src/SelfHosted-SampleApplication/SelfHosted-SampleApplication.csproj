@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4DF31461-1DB8-4777-87C3-155FF2932B30}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SelfHosted_SampleApplication</RootNamespace>
+    <AssemblyName>SelfHosted-SampleApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\log4net\net-3.5\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\lib\Ninject\net-4.0\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.ContextPreservation">
+      <HintPath>..\..\lib\Ninject.Extensions.ContextPreservation\net-4.0\Ninject.Extensions.ContextPreservation.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.NamedScope, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\Ninject.Extensions.NamedScope\net-4.0\Ninject.Extensions.NamedScope.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\..\lib\Ninject.Web.Common\net-4.0\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.SelfHost">
+      <HintPath>..\..\lib\Ninject.Web.Common\net-4.0\extensions\Ninject.Web.Common.SelfHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.4.0.20505.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.4.0.20505.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.SelfHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.SelfHost.4.0.20505.0\lib\net40\System.Web.Http.SelfHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SampleApplication\Controllers\ControllerInjectionExample\ValuesController.cs">
+      <Link>Controllers\ControllerInjectionExample\ValuesController.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Controllers\FilterInjectionExample\CacheAttribute.cs">
+      <Link>Controllers\FilterInjectionExample\CacheAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Controllers\FilterInjectionExample\ClearCacheOnSuccessAttribute.cs">
+      <Link>Controllers\FilterInjectionExample\ClearCacheOnSuccessAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Controllers\FilterInjectionExample\DistributedCacheFilter.cs">
+      <Link>Controllers\FilterInjectionExample\DistributedCacheFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Controllers\FilterInjectionExample\FilterInjectionModule.cs">
+      <Link>Controllers\FilterInjectionExample\FilterInjectionModule.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Controllers\FilterInjectionExample\LogFilter.cs">
+      <Link>Controllers\FilterInjectionExample\LogFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Controllers\FilterInjectionExample\MovieController.cs">
+      <Link>Controllers\FilterInjectionExample\MovieController.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Models\Movie\Movies.Designer.cs">
+      <Link>Models\Movie\Movies.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Movies.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="..\SampleApplication\Models\Movie\MoviesMetadata.cs">
+      <Link>Models\Movie\MoviesMetadata.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Models\Movie\PriceRangeAttribute.cs">
+      <Link>Models\Movie\PriceRangeAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Services\DistributedCacheService\DateTimeProvider.cs">
+      <Link>Servcies\DistributedCacheService\DateTimeProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Services\DistributedCacheService\DistributedCacheService.cs">
+      <Link>Servcies\DistributedCacheService\DistributedCacheService.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Services\DistributedCacheService\DistributedCacheServiceModule.cs">
+      <Link>Servcies\DistributedCacheService\DistributedCacheServiceModule.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Services\DistributedCacheService\IDateTimeProvider.cs">
+      <Link>Servcies\DistributedCacheService\IDateTimeProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Services\DistributedCacheService\IDistributedCacheService.cs">
+      <Link>Servcies\DistributedCacheService\IDistributedCacheService.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Services\PriceingService\IPriceingService.cs">
+      <Link>Servcies\PriceingService\IPriceingService.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Services\PriceingService\PriceingService.cs">
+      <Link>Servcies\PriceingService\PriceingService.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Services\PriceingService\PriceingServiceModule.cs">
+      <Link>Servcies\PriceingService\PriceingServiceModule.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Services\ValuesService\IValuesProvider.cs">
+      <Link>Servcies\ValuesService\IValuesProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Services\ValuesService\ValuesModule.cs">
+      <Link>Servcies\ValuesService\ValuesModule.cs</Link>
+    </Compile>
+    <Compile Include="..\SampleApplication\Services\ValuesService\ValuesProvider.cs">
+      <Link>Servcies\ValuesService\ValuesProvider.cs</Link>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="..\SampleApplication\Models\Movie\Movies.edmx">
+      <Link>Models\Movie\Movies.edmx</Link>
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Movies.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>SampleApplication.Models.Movie</CustomToolNamespace>
+    </EntityDeploy>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ninject.Web.WebApi.Selfhost\Ninject.Web.WebApi.Selfhost.csproj">
+      <Project>{A8925F38-F4AB-44B4-A4AC-C37CF7EA6A37}</Project>
+      <Name>Ninject.Web.WebApi.Selfhost</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ninject.Web.WebApi\Ninject.Web.WebApi.csproj">
+      <Project>{F8980B1F-899E-4C2D-A0DC-E76DB52DAA03}</Project>
+      <Name>Ninject.Web.WebApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\SampleApplication\Models\Movie\Movies.edmx.sql">
+      <Link>Models\Movie\Movies.edmx.sql</Link>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

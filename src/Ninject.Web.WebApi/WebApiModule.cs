@@ -21,8 +21,8 @@ namespace Ninject.Web.WebApi
 {
     using System.Web;
     using System.Web.Http;
+    using System.Web.Http.Dependencies;
     using System.Web.Http.Filters;
-    using System.Web.Http.Services;
     using System.Web.Http.Validation;
     using System.Web.Routing;
 
@@ -42,13 +42,20 @@ namespace Ninject.Web.WebApi
         {
             base.Load();
             this.Kernel.Components.Add<INinjectHttpApplicationPlugin, NinjectWebApiHttpApplicationPlugin>();
-            this.Kernel.Bind<IDependencyResolver>().To<NinjectDependencyResolver>();
-            this.Kernel.Bind<IFilterProvider>().ToConstant(new DefaultFilterProvider(this.Kernel, GlobalConfiguration.Configuration.ServiceResolver.GetFilterProviders()));
-            this.Kernel.Bind<IFilterProvider>().To<NinjectFilterProvider>();
-            this.Kernel.Bind<RouteCollection>().ToConstant(RouteTable.Routes);
-            this.Kernel.Bind<HttpContext>().ToMethod(ctx => HttpContext.Current).InTransientScope();
-            this.Kernel.Bind<HttpContextBase>().ToMethod(ctx => new HttpContextWrapper(HttpContext.Current)).InTransientScope();
-            this.Kernel.Bind<ModelValidatorProvider>().ToConstant(new NinjectDefaultModelValidatorProvider(this.Kernel, GlobalConfiguration.Configuration.ServiceResolver.GetModelValidatorProviders()));
+            this.Kernel.Components.Add<IWebApiRequestScopeProvider, DefaultWebApiRequestScopeProvider>();
+            
+            this.Bind<IDependencyResolver>().To<NinjectDependencyResolver>();
+            
+            this.Bind<IFilterProvider>().ToConstant(new DefaultFilterProvider(this.Kernel, GlobalConfiguration.Configuration.Services.GetFilterProviders()));
+            this.Bind<IFilterProvider>().To<NinjectFilterProvider>();
+            
+            this.Bind<RouteCollection>().ToConstant(RouteTable.Routes);
+            this.Bind<HttpContext>().ToMethod(ctx => HttpContext.Current).InTransientScope();
+            this.Bind<HttpContextBase>().ToMethod(ctx => new HttpContextWrapper(HttpContext.Current)).InTransientScope();
+            
+            this.Kernel.Bind<ModelValidatorProvider>().ToConstant(
+                new NinjectDefaultModelValidatorProvider(this.Kernel, GlobalConfiguration.Configuration.Services.GetModelValidatorProviders()));
+            this.Kernel.Bind<ModelValidatorProvider>().To<NinjectDataAnnotationsModelValidatorProvider>();
         }
     }
 }

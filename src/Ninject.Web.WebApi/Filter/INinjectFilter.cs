@@ -31,6 +31,6 @@ namespace Ninject.Web.WebApi.Filter
         /// </summary>
         /// <param name="parameter">The parameter.</param>
         /// <returns>The created filter.</returns>
-        Filter BuildFilter(FilterContextParameter parameter);
+        FilterInfo BuildFilter(FilterContextParameter parameter);
     }
 }

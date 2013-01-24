@@ -19,11 +19,10 @@
 
 namespace Ninject.Web.WebApi
 {
-    using System.Web;
     using System.Web.Http;
-    using System.Web.Http.Services;
-    using System.Web.Http.Validation.Providers;
+    using System.Web.Http.Dependencies;
 
+    using Ninject.Activation;
     using Ninject.Components;
     using Ninject.Web.Common;
 
@@ -37,25 +36,27 @@ namespace Ninject.Web.WebApi
         /// </summary>
         private readonly IKernel kernel;
 
+        private readonly IWebApiRequestScopeProvider webApiRequestScopeProvider;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="NinjectWebApiHttpApplicationPlugin"/> class.
         /// </summary>
         /// <param name="kernel">The kernel.</param>
-        public NinjectWebApiHttpApplicationPlugin(IKernel kernel)
+        /// <param name="webApiRequestScopeProvider">The web API request scope provider.</param>
+        public NinjectWebApiHttpApplicationPlugin(IKernel kernel, IWebApiRequestScopeProvider webApiRequestScopeProvider)
         {
             this.kernel = kernel;
+            this.webApiRequestScopeProvider = webApiRequestScopeProvider;
         }
 
         /// <summary>
         /// Gets the request scope.
         /// </summary>
-        /// <value>The request scope.</value>
-        public object RequestScope
+        /// <param name="context">The context.</param>
+        /// <returns>The request scope.</returns>
+        public object GetRequestScope(IContext context)
         {
-            get
-            {
-                return HttpContext.Current;
-            }
+            return this.webApiRequestScopeProvider.GetRequestScope(context);
         }
         
         /// <summary>
@@ -63,7 +64,7 @@ namespace Ninject.Web.WebApi
         /// </summary>
         public void Start()
         {
-            GlobalConfiguration.Configuration.ServiceResolver.SetResolver(this.CreateDependencyResolver());
+            this.kernel.Get<HttpConfiguration>().DependencyResolver = this.CreateDependencyResolver();
         }
 
         /// <summary>
