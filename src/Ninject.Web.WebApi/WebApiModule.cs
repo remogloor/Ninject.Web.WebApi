@@ -19,6 +19,7 @@
 
 namespace Ninject.Web.WebApi
 {
+    using System.Linq;
     using System.Web;
     using System.Web.Http;
     using System.Web.Http.Dependencies;
@@ -45,16 +46,17 @@ namespace Ninject.Web.WebApi
             this.Kernel.Components.Add<IWebApiRequestScopeProvider, DefaultWebApiRequestScopeProvider>();
             
             this.Bind<IDependencyResolver>().To<NinjectDependencyResolver>();
-            
-            this.Bind<IFilterProvider>().ToConstant(new DefaultFilterProvider(this.Kernel, GlobalConfiguration.Configuration.Services.GetFilterProviders()));
+
+            var defaultFilterProviders = GlobalConfiguration.Configuration.Services.GetServices(typeof(IFilterProvider)).Cast<IFilterProvider>();
+            this.Bind<IFilterProvider>().ToConstant(new DefaultFilterProvider(this.Kernel, defaultFilterProviders));
             this.Bind<IFilterProvider>().To<NinjectFilterProvider>();
             
             this.Bind<RouteCollection>().ToConstant(RouteTable.Routes);
             this.Bind<HttpContext>().ToMethod(ctx => HttpContext.Current).InTransientScope();
             this.Bind<HttpContextBase>().ToMethod(ctx => new HttpContextWrapper(HttpContext.Current)).InTransientScope();
-            
-            this.Kernel.Bind<ModelValidatorProvider>().ToConstant(
-                new NinjectDefaultModelValidatorProvider(this.Kernel, GlobalConfiguration.Configuration.Services.GetModelValidatorProviders()));
+
+            var modelValidatorProviders = GlobalConfiguration.Configuration.Services.GetServices(typeof(ModelValidatorProvider)).Cast<ModelValidatorProvider>();
+            this.Kernel.Bind<ModelValidatorProvider>().ToConstant(new NinjectDefaultModelValidatorProvider(this.Kernel, modelValidatorProviders));
             this.Kernel.Bind<ModelValidatorProvider>().To<NinjectDataAnnotationsModelValidatorProvider>();
         }
     }

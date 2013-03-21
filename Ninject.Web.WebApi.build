@@ -29,10 +29,9 @@
 				<include name="System.Web.Abstractions.dll"/>
 				<include name="System.Web.Routing.dll"/>
 				<include name="System.ComponentModel.DataAnnotations.dll"/>
-				<include name="${path.lib}/WebApi/System.Net.Http.dll"/>
-				<include name="${path.lib}/WebApi/System.Web.Http.dll"/>
-				<include name="${path.lib}/WebApi/System.Web.Http.Common.dll"/>
-				<include name="${path.lib}/WebApi/System.Web.Http.WebHost.dll"/>
+				<include name="${path.packages}/Microsoft.Net.Http.*/lib/net40/System.Net.Http.dll"/>
+				<include name="${path.packages}/Microsoft.AspNet.WebApi.Core.*/lib/net40/System.Web.Http.dll"/>
+				<include name="${path.packages}/Microsoft.AspNet.WebApi.WebHost.*/lib/net40/System.Web.Http.WebHost.dll"/>
 				<include name="${path.lib}/Ninject/${build.platform}/Ninject.dll"/>
 				<include name="${path.lib}/Ninject.Web.Common/${build.platform}/Ninject.Web.Common.dll"/>
 			</references>
@@ -58,10 +57,9 @@
 				<include name="System.Web.Abstractions.dll"/>
 				<include name="System.Web.Routing.dll"/>
 				<include name="System.ComponentModel.DataAnnotations.dll"/>
-				<include name="${path.lib}/WebApi/System.Net.Http.dll"/>
-				<include name="${path.lib}/WebApi/System.Web.Http.dll"/>
-				<include name="${path.lib}/WebApi/System.Web.Http.Common.dll"/>
-				<include name="${path.lib}/WebApi/System.Web.Http.SelfHost.dll"/>
+				<include name="${path.packages}/Microsoft.Net.Http.*/lib/net40/System.Net.Http.dll"/>
+				<include name="${path.packages}/Microsoft.AspNet.WebApi.Core.*/lib/net40/System.Web.Http.dll"/>
+				<include name="${path.packages}/Microsoft.AspNet.WebApi.SelfHost.*/lib/net40/System.Web.Http.SelfHost.dll"/>
 				<include name="${path.lib}/Ninject/${build.platform}/Ninject.dll"/>
 				<include name="${path.lib}/Ninject.Web.Common/${build.platform}/Ninject.Web.Common.dll"/>
 				<include name="${path.lib}/Ninject.Web.Common/${build.platform}/Ninject.Web.Common.SelfHost.dll"/>

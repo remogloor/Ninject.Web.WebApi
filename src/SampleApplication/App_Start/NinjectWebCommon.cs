@@ -21,8 +21,8 @@
 
 using SampleApplication.App_Start;
 
-[assembly: WebActivator.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
-[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
 
 namespace SampleApplication.App_Start
 {
