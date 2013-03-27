@@ -15,8 +15,8 @@
     <dependencies>
       <dependency id="Ninject.Web.Common.Selfhost" version="3.0.0.0" />
       <dependency id="Ninject.Web.WebApi" version="3.0.0.0" />
-      <dependency id="Microsoft.AspNet.WebApi.SelfHost" version="[4.0.20918.0,4.1)" />
-      <dependency id="Microsoft.AspNet.WebApi.WebHost" version="[4.0.20710.0,4.1)" />
+      <dependency id="Microsoft.AspNet.WebApi.SelfHost" version="[4.0.20918.0,5.0)" />
+      <dependency id="Microsoft.AspNet.WebApi.WebHost" version="[4.0.20710.0,5.0)" />
     </dependencies>
   </metadata>
 </package>
