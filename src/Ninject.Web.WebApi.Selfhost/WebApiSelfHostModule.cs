@@ -47,6 +47,9 @@ namespace Ninject.Web.WebApi.Selfhost
             this.Kernel.Bind<INinjectSelfHost>().To<NinjectWebApiSelfHost>();
         }
 
+        /// <summary>
+        /// Called after loading the modules. A module can verify here if all other required modules are loaded.
+        /// </summary>
         public override void VerifyRequiredModulesAreLoaded()
         {
             if (!this.Kernel.HasModule(typeof(WebApiModule).FullName))
