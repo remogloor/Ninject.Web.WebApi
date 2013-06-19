@@ -45,7 +45,7 @@ namespace Ninject.Web.WebApi.Selfhost
         {
             try
             {
-                return NamedScopeExtensionMethods.GetScope(context, WebAPIScopeName);
+                return context.GetNamedScope(WebAPIScopeName);
             }
             catch (UnknownScopeException)
             {

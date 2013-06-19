@@ -58,6 +58,8 @@ namespace Ninject.Web.WebApi
             var modelValidatorProviders = GlobalConfiguration.Configuration.Services.GetServices(typeof(ModelValidatorProvider)).Cast<ModelValidatorProvider>();
             this.Kernel.Bind<ModelValidatorProvider>().ToConstant(new NinjectDefaultModelValidatorProvider(this.Kernel, modelValidatorProviders));
             this.Kernel.Bind<ModelValidatorProvider>().To<NinjectDataAnnotationsModelValidatorProvider>();
+
+            this.Kernel.Bind<HttpConfiguration>().ToMethod(ctx => GlobalConfiguration.Configuration);
         }
     }
 }
