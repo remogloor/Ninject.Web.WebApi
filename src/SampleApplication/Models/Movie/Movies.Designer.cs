@@ -124,7 +124,7 @@ namespace SampleApplication.Models.Movie
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -143,7 +143,7 @@ namespace SampleApplication.Models.Movie
                 {
                     OnIdChanging(value);
                     ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
+                    _Id = StructuralObject.SetValidValue(value, "Id");
                     ReportPropertyChanged("Id");
                     OnIdChanged();
                 }
@@ -168,7 +168,7 @@ namespace SampleApplication.Models.Movie
             {
                 OnTitleChanging(value);
                 ReportPropertyChanging("Title");
-                _Title = StructuralObject.SetValidValue(value, true);
+                _Title = StructuralObject.SetValidValue(value, true, "Title");
                 ReportPropertyChanged("Title");
                 OnTitleChanged();
             }
@@ -192,7 +192,7 @@ namespace SampleApplication.Models.Movie
             {
                 OnGenreChanging(value);
                 ReportPropertyChanging("Genre");
-                _Genre = StructuralObject.SetValidValue(value, true);
+                _Genre = StructuralObject.SetValidValue(value, true, "Genre");
                 ReportPropertyChanged("Genre");
                 OnGenreChanged();
             }
@@ -216,7 +216,7 @@ namespace SampleApplication.Models.Movie
             {
                 OnReleaseDateChanging(value);
                 ReportPropertyChanging("ReleaseDate");
-                _ReleaseDate = StructuralObject.SetValidValue(value);
+                _ReleaseDate = StructuralObject.SetValidValue(value, "ReleaseDate");
                 ReportPropertyChanged("ReleaseDate");
                 OnReleaseDateChanged();
             }
@@ -240,7 +240,7 @@ namespace SampleApplication.Models.Movie
             {
                 OnPriceChanging(value);
                 ReportPropertyChanging("Price");
-                _Price = StructuralObject.SetValidValue(value);
+                _Price = StructuralObject.SetValidValue(value, "Price");
                 ReportPropertyChanged("Price");
                 OnPriceChanged();
             }
@@ -251,10 +251,8 @@ namespace SampleApplication.Models.Movie
 
         #endregion
 
-    
     }
 
     #endregion
 
-    
 }
