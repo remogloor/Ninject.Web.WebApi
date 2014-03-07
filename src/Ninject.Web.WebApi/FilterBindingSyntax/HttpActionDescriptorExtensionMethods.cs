@@ -52,7 +52,7 @@ namespace Ninject.Web.WebApi.FilterBindingSyntax
         public static IEnumerable<object> GetCustomAttributes(this HttpControllerDescriptor actionDescriptor, Type type)
         {
             return ((IEnumerable)typeof(HttpControllerDescriptor)
-                                     .GetMethod("GetCustomAttributes").MakeGenericMethod(type)
+                                     .GetMethod("GetCustomAttributes", new Type[0]).MakeGenericMethod(type)
                                      .Invoke(actionDescriptor, new object[0])).Cast<object>();
         }
     }
