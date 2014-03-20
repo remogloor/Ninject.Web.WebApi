@@ -14,10 +14,12 @@
     <iconUrl>https://github.com/ninject/ninject/raw/master/logos/Ninject-Logo32.png</iconUrl>
     <projectUrl>http://www.ninject.org</projectUrl>
     <dependencies>
-      <dependency id="Ninject.Web.Common.OwinHost" version="3.0.0.0" />
-      <dependency id="Ninject.Web.WebApi" version="3.0.0.0" />
-      <dependency id="Microsoft.AspNet.WebApi.OwinHost" version="[5.0.20918.0,6.0)" />
-      <dependency id="Microsoft.AspNet.WebApi.WebHost" version="[5.0.20710.0,6.0)" />
+      <dependency id="Ninject.Web.WebApi" version="[3.0,4.0)" />  
+      <dependency id="Ninject.Web.Common" version="[3.0,4.0)" />
+      <dependency id="Ninject.Web.Common.OwinHost" version="[3.0,4.0)" />
+      <dependency id="Ninject.Extensions.ContextPreservation" version="[3.0,4.0)" />
+      <dependency id="Ninject.Extensions.NamedScope" version="[3.0,4.0)" />
+      <dependency id="Microsoft.AspNet.WebApi.Owin" version="[5.0,6.0)" />
     </dependencies>
   </metadata>
 </package>
