@@ -62,13 +62,22 @@
 				<include name="${packagepath.Microsoft.Owin}/*.dll"/>
 				<include name="${packagepath.Microsoft.Owin}/*.xml"/>
 			</fileset>
-		</copy> 
+		</copy> 		
+		
+		<property name="packagepath.Microsoft.AspNet.WebApi.Owin" value="Microsoft.AspNet.WebApi.Owin.*/lib/net45" if="${string::contains(build.platform, 'net-4.5')}" />
+		<property name="current.path.lib.Microsoft.AspNet.WebApi.Owin" value="${path.packages}/${packagepath.Microsoft.AspNet.WebApi.Owin}"/>
+		<copy todir="${current.path.build}/Microsoft.AspNet.WebApi.Owin/lib">
+			<fileset basedir="${path.packages}">
+				<include name="${packagepath.Microsoft.AspNet.WebApi.Owin}/*.dll"/>
+				<include name="${packagepath.Microsoft.AspNet.WebApi.Owin}/*.xml"/>
+			</fileset>
+		</copy> 		 
     
 		<property name="current.path.build.extensions" value="${path.build}/${build.platform}/${build.config}/extensions"/>
 		<mkdir dir="${current.path.build.extensions}" if="${not(directory::exists(current.path.build.extensions))}"/>
 	
 		<csc noconfig="true" warnaserror="true" target="library" debug="${build.debug}" optimize="${build.optimize}" define="${build.defines}" 
-		     output="${current.path.build}/${product.name}.SelfHost.dll" doc="${current.path.build}/${product.name}.SelfHost.xml" keyfile="${path.src}/${product.keyfile}">
+		     output="${current.path.build}/${product.name}.OwinHost.dll" doc="${current.path.build}/${product.name}.OwinHost.xml" keyfile="${path.src}/${product.keyfile}">
 			<arg line="/filealign:512" unless="${nant.settings.currentframework == 'mono-2.0'}"/>
 			<sources basedir="${path.src}">
 				<include name="${build.asminfo}"/>
@@ -83,12 +92,15 @@
 				<include name="${path.packages}/Microsoft.AspNet.WebApi.Core.*/lib/net45/System.Web.Http.dll"/>
 				<include name="${path.lib}/Ninject/${build.platform}/Ninject.dll"/>
 				<include name="${path.lib}/Ninject.Web.Common/${build.platform}/Ninject.Web.Common.dll"/>
+				<include name="${path.lib}/Ninject.Web.Common/${build.platform}/Ninject.Web.Common.OwinHost.dll"/>
 				<include name="${path.lib}/Ninject.Extensions.ContextPreservation/${build.platform}/Ninject.Extensions.ContextPreservation.dll"/>
 				<include name="${path.lib}/Ninject.Extensions.NamedScope/${build.platform}/Ninject.Extensions.NamedScope.dll"/>
 				<include name="${current.path.build}/${product.assembly}"/>
         
-        <include name="${current.path.lib.Owin}/Owin.dll" />
+				<include name="${current.path.lib.Owin}/Owin.dll" />
 				<include name="${current.path.lib.Microsoft.Owin}/Microsoft.Owin.dll" />
+				<include name="${current.path.lib.Microsoft.Owin}/Microsoft.Owin.dll" />
+				<include name="${current.path.lib.Microsoft.AspNet.WebApi.Owin}/System.Web.Http.Owin.dll" />
 				<include name="${current.path.build}/${product.assembly}"/>
 			</references>
 		</csc>
