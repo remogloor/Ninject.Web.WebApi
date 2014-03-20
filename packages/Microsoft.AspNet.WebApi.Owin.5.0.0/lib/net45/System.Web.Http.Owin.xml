@@ -4,6 +4,27 @@
     <name>System.Web.Http.Owin</name>
   </assembly>
   <members>
+    <member name="T:Owin.WebApiAppBuilderExtensions">
+      <summary>Provides extension methods for the <see cref="T:Owin.IAppBuilder" /> class.</summary>
+    </member>
+    <member name="M:Owin.WebApiAppBuilderExtensions.UseHttpMessageHandler(Owin.IAppBuilder,System.Net.Http.HttpMessageHandler)">
+      <summary>Adds a component to the OWIN pipeline for running an <see cref="T:System.Net.Http.HttpMessageHandler" />.</summary>
+      <returns>The application builder.</returns>
+      <param name="builder">The application builder.</param>
+      <param name="messageHandler">The message handler.</param>
+    </member>
+    <member name="M:Owin.WebApiAppBuilderExtensions.UseWebApi(Owin.IAppBuilder,System.Web.Http.HttpConfiguration)">
+      <summary>Adds a component to the OWIN pipeline for running a Web API endpoint.</summary>
+      <returns>The application builder.</returns>
+      <param name="builder">The application builder.</param>
+      <param name="configuration">The <see cref="T:System.Web.Http.HttpConfiguration" /> used to configure the endpoint.</param>
+    </member>
+    <member name="M:Owin.WebApiAppBuilderExtensions.UseWebApi(Owin.IAppBuilder,System.Web.Http.HttpServer)">
+      <summary>Adds a component to the OWIN pipeline for running a Web API endpoint.</summary>
+      <returns>The application builder.</returns>
+      <param name="builder">The application builder.</param>
+      <param name="httpServer">The http server.</param>
+    </member>
     <member name="T:System.Net.Http.OwinHttpRequestMessageExtensions">
       <summary>Provides extension methods for the <see cref="T:System.Net.Http.HttpRequestMessage" /> class.</summary>
     </member>
@@ -83,19 +104,6 @@
       <param name="messageHandler">The <see cref="T:System.Net.Http.HttpMessageHandler" /> to submit requests to.</param>
       <param name="bufferPolicySelector">The <see cref="T:System.Web.Http.Hosting.IHostBufferPolicySelector" /> that determines whether or not to buffer requests and responses.</param>
     </member>
-    <member name="M:System.Web.Http.Owin.HttpMessageHandlerAdapter.#ctor(Microsoft.Owin.OwinMiddleware,System.Web.Http.Owin.HttpMessageHandlerOptions)">
-      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Owin.HttpMessageHandlerAdapter" /> class.</summary>
-      <param name="next">The next component in the pipeline.</param>
-      <param name="options">The options to configure this adapter.</param>
-    </member>
-    <member name="P:System.Web.Http.Owin.HttpMessageHandlerAdapter.AppDisposing">
-      <summary>Gets the cancellation token that triggers cleanup of this component.</summary>
-      <returns>The cancellation token.</returns>
-    </member>
-    <member name="P:System.Web.Http.Owin.HttpMessageHandlerAdapter.BufferPolicySelector">
-      <summary>Gets the <see cref="T:System.Web.Http.Hosting.IHostBufferPolicySelector" /> that determines whether or not to buffer requests and responses.</summary>
-      <returns>The <see cref="T:System.Web.Http.Hosting.IHostBufferPolicySelector" /> that determines whether or not to buffer requests and responses.</returns>
-    </member>
     <member name="M:System.Web.Http.Owin.HttpMessageHandlerAdapter.Dispose">
       <summary>Releases all resources used by the current instance of the <see cref="T:System.Web.Http.Owin.HttpMessageHandlerAdapter" /> class.</summary>
     </member>
@@ -103,47 +111,7 @@
       <summary>Releases unmanaged and optionally managed resources.</summary>
       <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
     </member>
-    <member name="P:System.Web.Http.Owin.HttpMessageHandlerAdapter.ExceptionHandler">
-      <summary>Gets the <see cref="T:System.Web.Http.ExceptionHandling.IExceptionHandler" /> to use to process unhandled exceptions.</summary>
-      <returns>The <see cref="T:System.Web.Http.ExceptionHandling.IExceptionHandler" /> to use to process unhandled exceptions.</returns>
-    </member>
-    <member name="P:System.Web.Http.Owin.HttpMessageHandlerAdapter.ExceptionLogger">
-      <summary>Gets the <see cref="T:System.Web.Http.ExceptionHandling.IExceptionLogger" /> to use to log unhandled exceptions.</summary>
-      <returns>The <see cref="T:System.Web.Http.ExceptionHandling.IExceptionLogger" /> to use to log unhandled exceptions.</returns>
-    </member>
-    <member name="M:System.Web.Http.Owin.HttpMessageHandlerAdapter.Invoke(Microsoft.Owin.IOwinContext)">
-      <returns>Returns <see cref="T:System.Threading.Tasks.Task" />.</returns>
-    </member>
-    <member name="P:System.Web.Http.Owin.HttpMessageHandlerAdapter.MessageHandler">
-      <summary>Gets the <see cref="T:System.Net.Http.HttpMessageHandler" /> to submit requests to.</summary>
-      <returns>The <see cref="T:System.Net.Http.HttpMessageHandler" /> to submit requests to.</returns>
-    </member>
-    <member name="T:System.Web.Http.Owin.HttpMessageHandlerOptions">
-      <summary>Represents the options for configuring an <see cref="T:System.Web.Http.Owin.HttpMessageHandlerAdapter" />.</summary>
-    </member>
-    <member name="M:System.Web.Http.Owin.HttpMessageHandlerOptions.#ctor">
-      <summary>Initializes a new instance of the<see cref="T:System.Web.Http.Owin.HttpMessageHandlerOptions" /> class.</summary>
-    </member>
-    <member name="P:System.Web.Http.Owin.HttpMessageHandlerOptions.AppDisposing">
-      <summary>Gets or sets the <see cref="T:System.Threading.CancellationToken" /> that triggers cleanup of the <see cref="T:System.Web.Http.Owin.HttpMessageHandlerAdapter" />.</summary>
-      <returns>The <see cref="T:System.Threading.CancellationToken" /> that triggers cleanup of the <see cref="T:System.Web.Http.Owin.HttpMessageHandlerAdapter" />.</returns>
-    </member>
-    <member name="P:System.Web.Http.Owin.HttpMessageHandlerOptions.BufferPolicySelector">
-      <summary>Gets or sets the <see cref="T:System.Web.Http.Hosting.IHostBufferPolicySelector" /> that determines whether or not to buffer requests and responses.</summary>
-      <returns>The <see cref="T:System.Web.Http.Hosting.IHostBufferPolicySelector" /> that determines whether or not to buffer requests and responses.</returns>
-    </member>
-    <member name="P:System.Web.Http.Owin.HttpMessageHandlerOptions.ExceptionHandler">
-      <summary>Gets or sets the <see cref="T:System.Web.Http.ExceptionHandling.IExceptionHandler" /> to use to process unhandled exceptions.</summary>
-      <returns>The <see cref="T:System.Web.Http.ExceptionHandling.IExceptionHandler" /> to use to process unhandled exceptions.</returns>
-    </member>
-    <member name="P:System.Web.Http.Owin.HttpMessageHandlerOptions.ExceptionLogger">
-      <summary>Gets or sets the <see cref="T:System.Web.Http.ExceptionHandling.IExceptionLogger" /> to use to log unhandled exceptions.</summary>
-      <returns>The <see cref="T:System.Web.Http.ExceptionHandling.IExceptionLogger" /> to use to log unhandled exceptions.</returns>
-    </member>
-    <member name="P:System.Web.Http.Owin.HttpMessageHandlerOptions.MessageHandler">
-      <summary>Gets or sets the <see cref="T:System.Net.Http.HttpMessageHandler" /> to submit requests to.</summary>
-      <returns>The <see cref="T:System.Net.Http.HttpMessageHandler" /> to submit requests to.</returns>
-    </member>
+    <member name="M:System.Web.Http.Owin.HttpMessageHandlerAdapter.Invoke(Microsoft.Owin.IOwinContext)"></member>
     <member name="T:System.Web.Http.Owin.OwinBufferPolicySelector">
       <summary>Provides the default implementation of <see cref="T:System.Web.Http.Hosting.IHostBufferPolicySelector" /> used by the OWIN Web API adapter.</summary>
     </member>
@@ -160,30 +128,20 @@
       <returns>true if buffering should be used; otherwise a streamed response should be used.</returns>
       <param name="response">The response.</param>
     </member>
-    <member name="T:System.Web.Http.Owin.OwinExceptionCatchBlocks">
-      <summary>Provides the catch blocks used within this assembly.</summary>
-    </member>
-    <member name="P:System.Web.Http.Owin.OwinExceptionCatchBlocks.HttpMessageHandlerAdapterBufferContent">
-      <summary>Gets the catch block in System.Web.Http.Owin.HttpMessageHandlerAdapter.BufferContent.</summary>
-      <returns>The catch block in System.Web.Http.Owin.HttpMessageHandlerAdapter.BufferContent.</returns>
-    </member>
-    <member name="P:System.Web.Http.Owin.OwinExceptionCatchBlocks.HttpMessageHandlerAdapterBufferError">
-      <summary>Gets the catch block in System.Web.Http.Owin.HttpMessageHandlerAdapter.BufferError.</summary>
-      <returns>The catch block in System.Web.Http.Owin.HttpMessageHandlerAdapter.BufferError.</returns>
-    </member>
-    <member name="P:System.Web.Http.Owin.OwinExceptionCatchBlocks.HttpMessageHandlerAdapterComputeContentLength">
-      <summary>Gets the catch block in System.Web.Http.Owin.HttpMessageHandlerAdapter.ComputeContentLength.</summary>
-      <returns>The catch block in System.Web.Http.Owin.HttpMessageHandlerAdapter.ComputeContentLength.</returns>
-    </member>
-    <member name="P:System.Web.Http.Owin.OwinExceptionCatchBlocks.HttpMessageHandlerAdapterStreamContent">
-      <summary>Gets the catch block in System.Web.Http.Owin.HttpMessageHandlerAdapter.StreamContent.</summary>
-      <returns>The catch block in System.Web.Http.Owin.HttpMessageHandlerAdapter.StreamContent.</returns>
-    </member>
     <member name="T:System.Web.Http.Owin.PassiveAuthenticationMessageHandler">
       <summary>Represents a message handler that treats all OWIN authentication middleware as passive.</summary>
     </member>
-    <member name="M:System.Web.Http.Owin.PassiveAuthenticationMessageHandler.#ctor">
+    <member name="M:System.Web.Http.Owin.PassiveAuthenticationMessageHandler.#ctor(System.Web.Http.Hosting.IHostPrincipalService)">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Owin.PassiveAuthenticationMessageHandler" /> class.</summary>
+      <param name="principalService">The host principal service to use to access the current principal.</param>
+    </member>
+    <member name="M:System.Web.Http.Owin.PassiveAuthenticationMessageHandler.#ctor(System.Web.Http.HttpConfiguration)">
+      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Owin.PassiveAuthenticationMessageHandler" /> class.</summary>
+      <param name="configuration">The configuration from which to use services.</param>
+    </member>
+    <member name="P:System.Web.Http.Owin.PassiveAuthenticationMessageHandler.HostPrincipalService">
+      <summary>Gets the host principal service to use to access the current principal.</summary>
+      <returns>The host principal service to use to access the current principal.</returns>
     </member>
     <member name="M:System.Web.Http.Owin.PassiveAuthenticationMessageHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
       <summary>Asynchronously sends a message request.</summary>
