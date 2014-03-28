@@ -17,6 +17,8 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using Ninject.Modules;
+
 namespace Ninject.Web.WebApi
 {
     using System.Linq;
@@ -34,14 +36,13 @@ namespace Ninject.Web.WebApi
     /// <summary>
     /// Defines the bindings and plugins of the MVC web extension.
     /// </summary>
-    public class WebApiModule : GlobalKernelRegistrationModule<OnePerRequestHttpModule>
+    public class WebApiModule : NinjectModule
     {
         /// <summary>
         /// Loads the module into the kernel.
         /// </summary>
         public override void Load()
         {
-            base.Load();
             this.Kernel.Components.Add<INinjectHttpApplicationPlugin, NinjectWebApiHttpApplicationPlugin>();
             this.Kernel.Components.Add<IWebApiRequestScopeProvider, DefaultWebApiRequestScopeProvider>();
             
@@ -51,10 +52,6 @@ namespace Ninject.Web.WebApi
             this.Bind<IFilterProvider>().ToConstant(new DefaultFilterProvider(this.Kernel, defaultFilterProviders));
             this.Bind<IFilterProvider>().To<NinjectFilterProvider>();
             
-            this.Bind<RouteCollection>().ToConstant(RouteTable.Routes);
-            this.Bind<HttpContext>().ToMethod(ctx => HttpContext.Current).InTransientScope();
-            this.Bind<HttpContextBase>().ToMethod(ctx => new HttpContextWrapper(HttpContext.Current)).InTransientScope();
-
             var modelValidatorProviders = GlobalConfiguration.Configuration.Services.GetServices(typeof(ModelValidatorProvider)).Cast<ModelValidatorProvider>();
             this.Kernel.Bind<ModelValidatorProvider>().ToConstant(new NinjectDefaultModelValidatorProvider(this.Kernel, modelValidatorProviders));
             this.Kernel.Bind<ModelValidatorProvider>().To<NinjectDataAnnotationsModelValidatorProvider>();
