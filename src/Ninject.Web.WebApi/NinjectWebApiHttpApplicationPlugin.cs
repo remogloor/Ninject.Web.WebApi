@@ -19,12 +19,16 @@
 
 namespace Ninject.Web.WebApi
 {
+    using System.Linq;
     using System.Web.Http;
     using System.Web.Http.Dependencies;
+    using System.Web.Http.Filters;
+    using System.Web.Http.Validation;
 
     using Ninject.Activation;
     using Ninject.Components;
     using Ninject.Web.Common;
+    using Ninject.Web.WebApi.Filter;
 
     /// <summary>
     /// The web plugin implementation for MVC
@@ -64,7 +68,17 @@ namespace Ninject.Web.WebApi
         /// </summary>
         public void Start()
         {
-            this.kernel.Get<HttpConfiguration>().DependencyResolver = this.CreateDependencyResolver();
+            var config = this.kernel.Get<HttpConfiguration>();
+
+            var defaultFilterProviders = config.Services.GetServices(typeof(IFilterProvider)).Cast<IFilterProvider>();
+            config.Services.Clear(typeof(IFilterProvider));
+            this.kernel.Bind<DefaultFilterProviders>().ToConstant(new DefaultFilterProviders(defaultFilterProviders));
+
+            var modelValidatorProviders = GlobalConfiguration.Configuration.Services.GetServices(typeof(ModelValidatorProvider)).Cast<ModelValidatorProvider>();
+            GlobalConfiguration.Configuration.Services.Clear(typeof(ModelValidatorProvider));
+            this.kernel.Bind<DefaultModelValidatorProviders>().ToConstant(new DefaultModelValidatorProviders(modelValidatorProviders));
+
+            config.DependencyResolver = this.CreateDependencyResolver();
         }
 
         /// <summary>

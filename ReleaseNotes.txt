@@ -1,6 +1,7 @@
 Version 3.2.1
 ---------------
-Moved common bindings to Ninject.Web.Common so that multiple web extensions can be used together.
+- Moved common bindings to Ninject.Web.Common so that multiple web extensions can be used together.
+- Fixed that filters on the configuration are not executed twice
 
 Version 3.2.0
 -------------

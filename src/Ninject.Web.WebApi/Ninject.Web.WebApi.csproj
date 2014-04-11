@@ -90,6 +90,8 @@
     <Compile Include="FilterBindingSyntax\IFilterBindingWithSyntax.cs" />
     <Compile Include="Filter\AbstractActionFilter.cs" />
     <Compile Include="Filter\DefaultFilterProvider.cs" />
+    <Compile Include="Filter\DefaultFilterProviders.cs" />
+    <Compile Include="Filter\DefaultModelValidatorProviders.cs" />
     <Compile Include="Filter\FilterContextParameter.cs" />
     <Compile Include="Filter\INinjectFilter.cs" />
     <Compile Include="Filter\NinjectFilter.cs" />

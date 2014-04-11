@@ -39,10 +39,10 @@ namespace Ninject.Web.WebApi.Filter
         /// </summary>
         /// <param name="kernel">The kernel.</param>
         /// <param name="filterProviders">The filter providers.</param>
-        public DefaultFilterProvider(IKernel kernel, IEnumerable<IFilterProvider> filterProviders)
+        public DefaultFilterProvider(IKernel kernel, DefaultFilterProviders filterProviders)
         {
             this.kernel = kernel;
-            this.filterProviders = filterProviders;
+            this.filterProviders = filterProviders.DefaultFilters;
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Ninject.Web.WebApi.Filter
             {
                 this.kernel.Inject(filter.Instance);
             }
-
+            
             return filters;
         }
     }

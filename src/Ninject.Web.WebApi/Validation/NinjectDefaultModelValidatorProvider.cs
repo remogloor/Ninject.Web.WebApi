@@ -16,6 +16,8 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using Ninject.Web.WebApi.Filter;
+
 namespace Ninject.Web.WebApi.Validation
 {
     using System.Collections.Generic;
@@ -44,11 +46,11 @@ namespace Ninject.Web.WebApi.Validation
         /// </summary>
         /// <param name="kernel">The kernel.</param>
         /// <param name="defaultModelValidatorProviders">The default model validator providers.</param>
-        public NinjectDefaultModelValidatorProvider(IKernel kernel, IEnumerable<ModelValidatorProvider> defaultModelValidatorProviders)
+        public NinjectDefaultModelValidatorProvider(IKernel kernel, DefaultModelValidatorProviders defaultModelValidatorProviders)
         {
             this.kernel = kernel;
 
-            this.defaultModelValidatorProviders = defaultModelValidatorProviders
+            this.defaultModelValidatorProviders = defaultModelValidatorProviders.DefaultModelValidators
                 .Where(p => !(p is DataAnnotationsModelValidatorProvider)).ToList();
             /*
             DataAnnotationsModelValidatorProvider.RegisterDefaultAdapterFactory(

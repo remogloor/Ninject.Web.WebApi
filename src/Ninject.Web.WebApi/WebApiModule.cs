@@ -48,15 +48,13 @@ namespace Ninject.Web.WebApi
             
             this.Bind<IDependencyResolver>().To<NinjectDependencyResolver>();
 
-            var defaultFilterProviders = GlobalConfiguration.Configuration.Services.GetServices(typeof(IFilterProvider)).Cast<IFilterProvider>();
-            this.Bind<IFilterProvider>().ToConstant(new DefaultFilterProvider(this.Kernel, defaultFilterProviders));
+            this.Bind<IFilterProvider>().To<DefaultFilterProvider>();
             this.Bind<IFilterProvider>().To<NinjectFilterProvider>();
             
-            var modelValidatorProviders = GlobalConfiguration.Configuration.Services.GetServices(typeof(ModelValidatorProvider)).Cast<ModelValidatorProvider>();
-            this.Kernel.Bind<ModelValidatorProvider>().ToConstant(new NinjectDefaultModelValidatorProvider(this.Kernel, modelValidatorProviders));
-            this.Kernel.Bind<ModelValidatorProvider>().To<NinjectDataAnnotationsModelValidatorProvider>();
+            this.Bind<ModelValidatorProvider>().To<NinjectDefaultModelValidatorProvider>();
+            this.Bind<ModelValidatorProvider>().To<NinjectDataAnnotationsModelValidatorProvider>();
 
-            this.Kernel.Bind<HttpConfiguration>().ToMethod(ctx => GlobalConfiguration.Configuration);
+            this.Bind<HttpConfiguration>().ToMethod(ctx => GlobalConfiguration.Configuration);
         }
     }
 }
