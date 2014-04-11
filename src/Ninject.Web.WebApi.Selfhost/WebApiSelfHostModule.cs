@@ -40,10 +40,6 @@ namespace Ninject.Web.WebApi.Selfhost
         /// </summary>
         public override void Load()
         {
-            this.Rebind<IDependencyResolver>().To<NinjectSelfHostDependencyResolver>();
-
-            this.Kernel.Components.RemoveAll<IWebApiRequestScopeProvider>();
-            this.Kernel.Components.Add<IWebApiRequestScopeProvider, SelfHostWebApiRequestScopeProvider>();
             this.Kernel.Bind<INinjectSelfHost>().To<NinjectWebApiSelfHost>();
         }
 
@@ -57,7 +53,11 @@ namespace Ninject.Web.WebApi.Selfhost
                 throw new InvalidOperationException("This module requires Ninject.Web.WebAPI extension");
             }
 
-            this.Kernel.Rebind<HttpConfiguration>().ToMethod(ctx => ctx.Kernel.Get<HttpSelfHostConfiguration>());
+            this.Rebind<HttpConfiguration>().ToMethod(ctx => ctx.Kernel.Get<HttpSelfHostConfiguration>());
+            this.Rebind<IDependencyResolver>().To<NinjectSelfHostDependencyResolver>();
+
+            this.Kernel.Components.RemoveAll<IWebApiRequestScopeProvider>();
+            this.Kernel.Components.Add<IWebApiRequestScopeProvider, SelfHostWebApiRequestScopeProvider>();
         }
     }
 }

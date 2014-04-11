@@ -16,6 +16,9 @@
 //   limitations under the License.
 // </copyright>
 //-------------------------------------------------------------------------------
+
+using System;
+
 namespace Ninject.Web.WebApi.OwinHost
 {
     using System.Web.Http;
@@ -49,6 +52,18 @@ namespace Ninject.Web.WebApi.OwinHost
         /// </summary>
         public override void Load()
         {
+        }
+
+        /// <summary>
+        /// Called after loading the modules. A module can verify here if all other required modules are loaded.
+        /// </summary>
+        public override void VerifyRequiredModulesAreLoaded()
+        {
+            if (!this.Kernel.HasModule(typeof(WebApiModule).FullName))
+            {
+                throw new InvalidOperationException("This module requires Ninject.Web.WebAPI extension");
+            }
+
             this.Rebind<IDependencyResolver>().To<OwinNinjectDependencyResolver>();
             this.Rebind<HttpConfiguration>().ToConstant(this.configuration);
 
