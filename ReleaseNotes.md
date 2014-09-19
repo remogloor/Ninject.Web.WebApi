@@ -1,4 +1,4 @@
-Version 3.2.0
+Version 3.2.2
 -------------
 Added Microsoft.Owin 3.0 support
 
