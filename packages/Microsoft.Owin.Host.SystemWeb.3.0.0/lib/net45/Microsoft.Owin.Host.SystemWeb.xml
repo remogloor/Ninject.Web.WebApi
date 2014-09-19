@@ -4,12 +4,6 @@
         <name>Microsoft.Owin.Host.SystemWeb</name>
     </assembly>
     <members>
-        <member name="T:System.Reflection.AssemblyMetadataAttribute">
-            <summary>
-            Provided as a down-level stub for the 4.5 AssemblyMetaDataAttribute class.
-            All released assemblies should define [AssemblyMetadata("Serviceable", "True")].
-            </summary>
-        </member>
         <member name="T:Owin.Loader.DefaultLoader">
             <summary>
             Locates the startup class based on the following convention:
