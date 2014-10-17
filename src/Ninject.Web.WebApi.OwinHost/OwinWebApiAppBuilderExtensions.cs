@@ -54,14 +54,55 @@ namespace Ninject.Web.WebApi.OwinHost
                 throw new ArgumentNullException("configuration");
             }
 
-            var bootstrapper = app.Properties.Where(element => element.Key.Equals(OwinAppBuilderExtensions.NinjectOwinBootstrapperKey))
-                .Select(x => x.Value)
-                .OfType<OwinBootstrapper>()
-                .Single();
-
-            bootstrapper.AddModule(new OwinWebApiModule(configuration));
+            AddOwinModuleToBootstrapper(app, configuration);
 
             return app.UseWebApi(configuration);
+        }
+
+        /// <summary>
+        /// The use ninject web API.
+        /// </summary>
+        /// <param name="app">
+        /// The app.
+        /// </param>
+        /// <param name="configuration">
+        /// The configuration.
+        /// </param>
+        /// <param name="server">
+        /// The HTTP Server.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IAppBuilder"/>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// An exception when a argument is null.
+        /// </exception>
+        public static IAppBuilder UseNinjectWebApi(this IAppBuilder app, HttpConfiguration configuration, HttpServer server)
+        {
+            if (configuration == null)
+            {
+                throw new ArgumentNullException("configuration");
+            }
+
+            if (server == null)
+            {
+                throw new ArgumentNullException("server");
+            }
+
+            AddOwinModuleToBootstrapper(app, configuration);
+
+            return app.UseWebApi(server);
+        }
+
+        private static void AddOwinModuleToBootstrapper(IAppBuilder app, HttpConfiguration configuration)
+        {
+            var bootstrapper =
+                app.Properties.Where(element => element.Key.Equals(OwinAppBuilderExtensions.NinjectOwinBootstrapperKey))
+                    .Select(x => x.Value)
+                    .OfType<OwinBootstrapper>()
+                    .Single();
+
+            bootstrapper.AddModule(new OwinWebApiModule(configuration));
         }
     }
 }
