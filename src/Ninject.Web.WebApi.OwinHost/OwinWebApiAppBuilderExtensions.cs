@@ -33,20 +33,11 @@ namespace Ninject.Web.WebApi.OwinHost
     public static class OwinWebApiAppBuilderExtensions
     {
         /// <summary>
-        /// The use ninject web API.
+        /// Adds the <see cref="OwinWebApiModule"/> to the <see cref="OwinBootstrapper"/> and Adds Web API component to the OWIN pipeline.  
         /// </summary>
-        /// <param name="app">
-        /// The app.
-        /// </param>
-        /// <param name="configuration">
-        /// The configuration.
-        /// </param>
-        /// <returns>
-        /// The <see cref="IAppBuilder"/>.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">
-        /// An exception when a argument is null.
-        /// </exception>
+        /// <param name="app">The application builder.</param>
+        /// <param name="configuration">The <see cref="HttpConfiguration"/> used to configure the endpoint.</param>
+        /// <returns>The application builder.</returns>
         public static IAppBuilder UseNinjectWebApi(this IAppBuilder app, HttpConfiguration configuration)
         {
             if (configuration == null)
@@ -60,23 +51,12 @@ namespace Ninject.Web.WebApi.OwinHost
         }
 
         /// <summary>
-        /// The use ninject web API.
+        /// Adds the <see cref="OwinWebApiModule"/> to the <see cref="OwinBootstrapper"/> and Adds Web API component to the OWIN pipeline.  
         /// </summary>
-        /// <param name="app">
-        /// The app.
-        /// </param>
-        /// <param name="configuration">
-        /// The configuration.
-        /// </param>
-        /// <param name="server">
-        /// The HTTP Server.
-        /// </param>
-        /// <returns>
-        /// The <see cref="IAppBuilder"/>.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">
-        /// An exception when a argument is null.
-        /// </exception>
+        /// <param name="app">The application builder.</param>
+        /// <param name="configuration">The <see cref="HttpConfiguration"/> used to configure the endpoint.</param>
+        /// <param name="server">The http server.</param>
+        /// <returns>The application builder.</returns>
         public static IAppBuilder UseNinjectWebApi(this IAppBuilder app, HttpConfiguration configuration, HttpServer server)
         {
             if (configuration == null)
@@ -94,6 +74,11 @@ namespace Ninject.Web.WebApi.OwinHost
             return app.UseWebApi(server);
         }
 
+        /// <summary>
+        /// Adds the <see cref="OwinWebApiModule"/> to the <see cref="OwinBootstrapper"/>
+        /// </summary>
+        /// <param name="app">The application builder.</param>
+        /// <param name="configuration">The <see cref="HttpConfiguration"/> used to configure the endpoint.</param>
         private static void AddOwinModuleToBootstrapper(IAppBuilder app, HttpConfiguration configuration)
         {
             var bootstrapper =
