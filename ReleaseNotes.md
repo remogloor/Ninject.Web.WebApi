@@ -1,3 +1,7 @@
+Version 3.2.3
+-------------
+Added support for passing in HttpServer to UseNinjectWebApi
+
 Version 3.2.2
 -------------
 Added Microsoft.Owin 3.0 support

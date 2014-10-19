@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{77BE2A9F-F61F-45D4-A5C5-1DF0DA05EA42}"
 	ProjectSection(SolutionItems) = preProject
-		README.markdown = README.markdown
+		README.md = README.md
+		ReleaseNotes.md = ReleaseNotes.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ninject.Web.WebApi", "src\Ninject.Web.WebApi\Ninject.Web.WebApi.csproj", "{F8980B1F-899E-4C2D-A0DC-E76DB52DAA03}"
