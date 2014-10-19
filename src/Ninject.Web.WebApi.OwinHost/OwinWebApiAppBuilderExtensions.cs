@@ -40,11 +40,6 @@ namespace Ninject.Web.WebApi.OwinHost
         /// <returns>The application builder.</returns>
         public static IAppBuilder UseNinjectWebApi(this IAppBuilder app, HttpConfiguration configuration)
         {
-            if (configuration == null)
-            {
-                throw new ArgumentNullException("configuration");
-            }
-
             AddOwinModuleToBootstrapper(app, configuration);
 
             return app.UseWebApi(configuration);
@@ -54,24 +49,18 @@ namespace Ninject.Web.WebApi.OwinHost
         /// Adds the <see cref="OwinWebApiModule"/> to the <see cref="OwinBootstrapper"/> and Adds Web API component to the OWIN pipeline.  
         /// </summary>
         /// <param name="app">The application builder.</param>
-        /// <param name="configuration">The <see cref="HttpConfiguration"/> used to configure the endpoint.</param>
-        /// <param name="server">The http server.</param>
+        /// <param name="httpServer">The http server.</param>
         /// <returns>The application builder.</returns>
-        public static IAppBuilder UseNinjectWebApi(this IAppBuilder app, HttpConfiguration configuration, HttpServer server)
+        public static IAppBuilder UseNinjectWebApi(this IAppBuilder app, HttpServer httpServer)
         {
-            if (configuration == null)
+            if (httpServer == null)
             {
-                throw new ArgumentNullException("configuration");
+                throw new ArgumentNullException("httpServer");
             }
 
-            if (server == null)
-            {
-                throw new ArgumentNullException("server");
-            }
+            AddOwinModuleToBootstrapper(app, httpServer.Configuration);
 
-            AddOwinModuleToBootstrapper(app, configuration);
-
-            return app.UseWebApi(server);
+            return app.UseWebApi(httpServer);
         }
 
         /// <summary>
@@ -81,6 +70,16 @@ namespace Ninject.Web.WebApi.OwinHost
         /// <param name="configuration">The <see cref="HttpConfiguration"/> used to configure the endpoint.</param>
         private static void AddOwinModuleToBootstrapper(IAppBuilder app, HttpConfiguration configuration)
         {
+            if (app == null)
+            {
+                throw new ArgumentNullException("app");
+            }
+
+            if (configuration == null)
+            {
+                throw new ArgumentNullException("configuration");
+            }
+
             var bootstrapper =
                 app.Properties.Where(element => element.Key.Equals(OwinAppBuilderExtensions.NinjectOwinBootstrapperKey))
                     .Select(x => x.Value)
