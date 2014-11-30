@@ -1,4 +1,4 @@
-# Ninject.Web.WebApi[![NuGet Version](http://img.shields.io/nuget/v/Ninject.Web.WebApi.svg?style=flat)](https://www.nuget.org/packages/Ninject.Web.WebApi/) [![NuGet Downloads](http://img.shields.io/nuget/dt/Ninject.Web.WebApi.svg?style=flat)](https://www.nuget.org/packages/Ninject.Web.WebApi/)
+# Ninject.Web.WebApi [![NuGet Version](http://img.shields.io/nuget/v/Ninject.Web.WebApi.svg?style=flat)](https://www.nuget.org/packages/Ninject.Web.WebApi/) [![NuGet Downloads](http://img.shields.io/nuget/dt/Ninject.Web.WebApi.svg?style=flat)](https://www.nuget.org/packages/Ninject.Web.WebApi/)
 
 Adds support for web API to Ninject
 
