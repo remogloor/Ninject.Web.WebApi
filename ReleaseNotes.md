@@ -1,3 +1,7 @@
+Version 3.2.4
+-------------
+Fixed that nuget package dependencies are not correct.
+
 Version 3.2.3
 -------------
 Added support for passing in HttpServer to UseNinjectWebApi
