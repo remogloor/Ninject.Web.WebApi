@@ -34,7 +34,7 @@ namespace Ninject.Web.WebApi
     using Ninject.Web.WebApi.Validation;
 
     /// <summary>
-    /// Defines the bindings and plugins of the MVC web extension.
+    /// Defines the bindings and plugins of the WebApi extension.
     /// </summary>
     public class WebApiModule : NinjectModule
     {
@@ -45,16 +45,14 @@ namespace Ninject.Web.WebApi
         {
             this.Kernel.Components.Add<INinjectHttpApplicationPlugin, NinjectWebApiHttpApplicationPlugin>();
             this.Kernel.Components.Add<IWebApiRequestScopeProvider, DefaultWebApiRequestScopeProvider>();
-            
+
             this.Bind<IDependencyResolver>().To<NinjectDependencyResolver>();
 
             this.Bind<IFilterProvider>().To<DefaultFilterProvider>();
             this.Bind<IFilterProvider>().To<NinjectFilterProvider>();
-            
+
             this.Bind<ModelValidatorProvider>().To<NinjectDefaultModelValidatorProvider>();
             this.Bind<ModelValidatorProvider>().To<NinjectDataAnnotationsModelValidatorProvider>();
-
-            this.Bind<HttpConfiguration>().ToMethod(ctx => GlobalConfiguration.Configuration);
         }
     }
 }

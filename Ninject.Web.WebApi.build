@@ -4,14 +4,14 @@
 	<property name="product.name" value="Ninject.Web.WebApi" overwrite="false"/>
 	<property name="product.company" value="Ninject Project Contributors" overwrite="false"/>
 	<property name="product.duration" value="2012" overwrite="false"/>
-	<property name="product.description" value="Ninject support for MVC Web API" overwrite="false"/>
+	<property name="product.description" value="Ninject support for ASP.NET Web API" overwrite="false"/>
 	<property name="product.platforms" value="net-4.0,net-4.5"  overwrite="false"/>
 	<property name="product.buildserverPlatforms" value="net-4.0"  overwrite="false"/>
 	<property name="product.packagePostfix" value="" overwrite="false"/>
 	<property name="dependencies" value="Ninject,Ninject.Web.Common,Ninject.Extensions.NamedScope,Ninject.Extensions.ContextPreservation"  overwrite="false"/>
 
 	<include buildfile="Ninject.include" />
-	<target name="all" depends="core selfhost owinhost"/>
+	<target name="all" depends="core webhost selfhost owinhost"/>
 	<target name="nuget-all" depends="nuget-webapi nuget-selfhost nuget-webhost nuget-owinhost"/>
 
 	<target name="core" depends="init">
@@ -31,9 +31,33 @@
 				<include name="System.ComponentModel.DataAnnotations.dll"/>
 				<include name="${path.packages}/Microsoft.Net.Http.*/lib/net40/System.Net.Http.dll"/>
 				<include name="${path.packages}/Microsoft.AspNet.WebApi.Core.*/lib/net45/System.Web.Http.dll"/>
+				<include name="${path.lib}/Ninject/${build.platform}/Ninject.dll"/>
+				<include name="${path.lib}/Ninject.Web.Common/${build.platform}/Ninject.Web.Common.dll"/>
+			</references>
+		</csc>
+	</target>
+	
+	<target name="webhost" depends="core">
+		<csc noconfig="true" warnaserror="true" target="library" debug="${build.debug}" optimize="${build.optimize}" define="${build.defines}" output="${current.path.build}/${product.name}.WebHost.dll" doc="${current.path.build}/${product.name}.WebHost.xml" keyfile="${path.src}/${product.keyfile}">
+			<arg line="/filealign:512" unless="${nant.settings.currentframework == 'mono-2.0'}"/>
+			<sources basedir="${path.src}">
+				<include name="${build.asminfo}"/>
+				<include name="${product.name}.WebHost/**/*.cs"/>
+			</sources>
+			<references>
+				<include name="mscorlib.dll"/>
+				<include name="System.dll"/>
+				<include name="System.Core.dll"/>
+				<include name="System.Web.dll"/>
+				<include name="System.Web.Abstractions.dll"/>
+				<include name="System.Web.Routing.dll"/>
+				<include name="System.ComponentModel.DataAnnotations.dll"/>
+				<include name="${path.packages}/Microsoft.Net.Http.*/lib/net40/System.Net.Http.dll"/>
+				<include name="${path.packages}/Microsoft.AspNet.WebApi.Core.*/lib/net45/System.Web.Http.dll"/>
 				<include name="${path.packages}/Microsoft.AspNet.WebApi.WebHost.*/lib/net45/System.Web.Http.WebHost.dll"/>
 				<include name="${path.lib}/Ninject/${build.platform}/Ninject.dll"/>
 				<include name="${path.lib}/Ninject.Web.Common/${build.platform}/Ninject.Web.Common.dll"/>
+				<include name="${current.path.build}/${product.assembly}"/>
 			</references>
 		</csc>
 	</target>
@@ -176,15 +200,17 @@
 	<target name="nuget-webhost">
 		<property name="nuget.sourcedir" value="${path.base}/nuget-webhost" />
 		<property name="nuget.basedir" value="${path.base}/build/nuget-webhost" />
-		<property name="nuget.platforms" value="" />
+		<property name="nuget.platforms" value="${product.platforms}" />
 		<property name="nuget.name" value="${product.name}.WebHost" />
+		<property name="nuget.releaseDirectory" value="${path.build}\${build.platform}\release" dynamic="true"/>
 		<property name="nuget.dependencies" value="${product.name}" />
 		<property name="nuget.additionalFiles" value="-" />
 		<property name="nuget.packageName" value="${nuget.name}${product.packagePostfix}" />	
-		<property name="nuget.symbol.basedir" value="" />
-		<property name="nuget.project" value="" />
+		<property name="nuget.symbol.basedir" value="${path.base}/build/nuget-webhost_symbol" />
+		<property name="nuget.project" value="${path.src}/${product.name}.WebHost/${product.name}.WebHost.csproj" />
 
 		<property name="nant.settings.currentframework" value="net-4.0"/>
+		<msbuild project="${nuget.project}" />
 		<call target="nuget-run"/>
 	</target>	
 

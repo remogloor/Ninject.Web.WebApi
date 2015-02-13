@@ -52,6 +52,7 @@ namespace Ninject.Web.WebApi.OwinHost
         /// </summary>
         public override void Load()
         {
+            this.Kernel.Bind<HttpConfiguration>().ToConstant(this.configuration);
         }
 
         /// <summary>
@@ -65,7 +66,6 @@ namespace Ninject.Web.WebApi.OwinHost
             }
 
             this.Rebind<IDependencyResolver>().To<OwinNinjectDependencyResolver>();
-            this.Rebind<HttpConfiguration>().ToConstant(this.configuration);
 
             this.Kernel.Components.RemoveAll<IWebApiRequestScopeProvider>();
             this.Kernel.Components.Add<IWebApiRequestScopeProvider, OwinWebApiRequestScopeProvider>();

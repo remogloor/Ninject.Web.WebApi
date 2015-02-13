@@ -62,7 +62,7 @@ namespace Ninject.Web.WebApi
         {
             return this.webApiRequestScopeProvider.GetRequestScope(context);
         }
-        
+
         /// <summary>
         /// Starts this instance.
         /// </summary>
@@ -74,8 +74,8 @@ namespace Ninject.Web.WebApi
             config.Services.Clear(typeof(IFilterProvider));
             this.kernel.Bind<DefaultFilterProviders>().ToConstant(new DefaultFilterProviders(defaultFilterProviders));
 
-            var modelValidatorProviders = GlobalConfiguration.Configuration.Services.GetServices(typeof(ModelValidatorProvider)).Cast<ModelValidatorProvider>();
-            GlobalConfiguration.Configuration.Services.Clear(typeof(ModelValidatorProvider));
+            var modelValidatorProviders = config.Services.GetServices(typeof(ModelValidatorProvider)).Cast<ModelValidatorProvider>();
+            config.Services.Clear(typeof(ModelValidatorProvider));
             this.kernel.Bind<DefaultModelValidatorProviders>().ToConstant(new DefaultModelValidatorProviders(modelValidatorProviders));
 
             config.DependencyResolver = this.CreateDependencyResolver();

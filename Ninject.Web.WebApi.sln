@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{77BE2A9F-F61F-45D4-A5C5-1DF0DA05EA42}"
 	ProjectSection(SolutionItems) = preProject
@@ -25,6 +25,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Owin-SampleApplication", "src\Owin-SampleApplication\Owin-SampleApplication.csproj", "{DF31E98F-3021-4571-AF82-FF62EC43DA7D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ninject.Web.WebApi.OwinHost", "src\Ninject.Web.WebApi.OwinHost\Ninject.Web.WebApi.OwinHost.csproj", "{E322DFD7-FAF1-4EEA-B601-B15E08E3F6A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ninject.Web.WebApi.WebHost", "src\Ninject.Web.WebApi.WebHost\Ninject.Web.WebApi.WebHost.csproj", "{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +131,21 @@ Global
 		{E322DFD7-FAF1-4EEA-B601-B15E08E3F6A4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E322DFD7-FAF1-4EEA-B601-B15E08E3F6A4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E322DFD7-FAF1-4EEA-B601-B15E08E3F6A4}.Release|x86.ActiveCfg = Release|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.AutomatedRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.AutomatedRelease|Any CPU.Build.0 = Release|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.AutomatedRelease|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.AutomatedRelease|Mixed Platforms.Build.0 = Release|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.AutomatedRelease|x86.ActiveCfg = Release|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6CD983F8-238A-4BF6-B541-A6CD96AFC43C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
