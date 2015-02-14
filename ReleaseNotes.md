@@ -1,6 +1,7 @@
 Version 3.2.4
 -------------
-Fixed that nuget package dependencies are not correct.
+Changed: OwinHost and SelfHost does not depend on WebHost any more. 
+This is a **Breaking Change**, Please install package "Ninject.Web.WebApi.WebHost" if use WebHost, but not just "Ninject.Web.WebApi".
 
 Version 3.2.3
 -------------
