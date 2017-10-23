@@ -1,115 +1,50 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F8980B1F-899E-4C2D-A0DC-E76DB52DAA03}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ninject.Web.WebApi</RootNamespace>
-    <AssemblyName>Ninject.Web.WebApi</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <TargetFrameworks>net45</TargetFrameworks>
+    <Version>0.0.0</Version>
+    <Authors>Remo Gloor, Ninject Contributors</Authors>
+    <Company>Ninject Project Contributors</Company>
+    <Product>Ninject integration for WebApi 2</Product>
+    <Description>Extension for Ninject providing integration with ASP.NET MVC WebAPI 2</Description>
+    <Copyright>2010 bbv Software Services AG. 2010-2017 Ninject Contributors.</Copyright>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyOriginatorKeyFile>..\Ninject.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+    <PackageId>Ninject.Web.WebApi</PackageId>
+    <PackageVersion>0.0.0</PackageVersion>
+    <PackageTags>IoC;DI;Ninject;Web;Api</PackageTags>
+    <PackageProjectUrl>http://www.ninject.org/</PackageProjectUrl>
+    <PackageReleaseNotes>https://github.com/ninject/Ninject.Web.WebApi/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <PackageIconUrl>https://github.com/ninject/ninject/raw/master/logos/Ninject-Logo32.png</PackageIconUrl>
+    <PackageLicenseUrl>https://github.com/ninject/Ninject.Web.WebApi/raw/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/ninject/Ninject.Web.WebApi</RepositoryUrl>
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\..\lib\Ninject\net-4.0\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Web.Common">
-      <HintPath>..\..\lib\Ninject.Web.Common\net-4.0\Ninject.Web.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
+    <AdditionalFiles Include="..\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="..\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="DefaultWebApiRequestScopeProvider.cs" />
-    <Compile Include="FilterBindingSyntax\AttributeValueSelector.cs" />
-    <Compile Include="FilterBindingSyntax\BindingRootExtensions.cs" />
-    <Compile Include="FilterBindingSyntax\FilterFilterBindingBuilder.cs" />
-    <Compile Include="FilterBindingSyntax\HttpActionDescriptorExtensionMethods.cs" />
-    <Compile Include="FilterBindingSyntax\IConstructorArgumentSyntaxExtensions.cs" />
-    <Compile Include="FilterBindingSyntax\IFilterBindingInNamedWithOrOnSyntax.cs" />
-    <Compile Include="FilterBindingSyntax\IFilterBindingInSyntax.cs" />
-    <Compile Include="FilterBindingSyntax\IFilterBindingNamedSyntax.cs" />
-    <Compile Include="FilterBindingSyntax\IFilterBindingNamedWithOrOnSyntax.cs" />
-    <Compile Include="FilterBindingSyntax\IFilterBindingOnSyntax.cs" />
-    <Compile Include="FilterBindingSyntax\IFilterBindingWhenInNamedWithOrOnSyntax.cs" />
-    <Compile Include="FilterBindingSyntax\IFilterBindingWhenSyntax.cs" />
-    <Compile Include="FilterBindingSyntax\IFilterBindingWithOrOnSyntax.cs" />
-    <Compile Include="FilterBindingSyntax\IFilterBindingWithSyntax.cs" />
-    <Compile Include="Filter\AbstractActionFilter.cs" />
-    <Compile Include="Filter\DefaultFilterProvider.cs" />
-    <Compile Include="Filter\DefaultFilterProviders.cs" />
-    <Compile Include="Filter\DefaultModelValidatorProviders.cs" />
-    <Compile Include="Filter\FilterContextParameter.cs" />
-    <Compile Include="Filter\INinjectFilter.cs" />
-    <Compile Include="Filter\NinjectFilter.cs" />
-    <Compile Include="Filter\NinjectFilterProvider.cs" />
-    <Compile Include="IWebApiRequestScopeProvider.cs" />
-    <Compile Include="NinjectDependencyScope.cs" />
-    <Compile Include="Validation\NinjectDataAnnotationsModelValidatorProvider.cs" />
-    <Compile Include="Validation\NinjectDefaultModelValidatorProvider.cs" />
-    <Compile Include="WebApiModule.cs" />
-    <Compile Include="NinjectDependencyResolver.cs" />
-    <Compile Include="NinjectWebApiHttpApplicationPlugin.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.3" />
+    <PackageReference Include="Ninject.Web.Common" Version="3.3.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta004">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

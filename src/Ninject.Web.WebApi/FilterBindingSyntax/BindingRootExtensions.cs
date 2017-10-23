@@ -1,13 +1,15 @@
-//-------------------------------------------------------------------------------
-// <copyright file="BindingRootExtensions.cs" company="bbv Software Services AG">
-//   Copyright (c) 2012 bbv Software Services AG
-//   Author: Remo Gloor (remo.gloor@gmail.com)
+// -------------------------------------------------------------------------------------------------
+// <copyright file="BindingRootExtensions.cs" company="Ninject Project Contributors">
+//   Copyright (c) 2007-2010 Enkari, Ltd. All rights reserved.
+//   Copyright (c) 2010-2017 Ninject Project Contributors. All rights reserved.
 //
-//   Licensed under the Apache License, Version 2.0 (the "License");
-//   you may not use this file except in compliance with the License.
+//   Dual-licensed under the Apache License, Version 2.0, and the Microsoft Public License (Ms-PL).
+//   You may not use this file except in compliance with one of the Licenses.
 //   You may obtain a copy of the License at
 //
 //       http://www.apache.org/licenses/LICENSE-2.0
+//   or
+//       http://www.microsoft.com/opensource/licenses.mspx
 //
 //   Unless required by applicable law or agreed to in writing, software
 //   distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,7 +17,7 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
 
 namespace Ninject.Web.WebApi.FilterBindingSyntax
 {
@@ -65,7 +67,7 @@ namespace Ninject.Web.WebApi.FilterBindingSyntax
         /// <param name="scope">The scope.</param>
         /// <returns>The fluent syntax.</returns>
         public static IFilterBindingWhenInNamedWithOrOnSyntax<T> BindHttpFilter<T>(
-            this IBindingRoot kernel, 
+            this IBindingRoot kernel,
             Expression<Func<IConstructorArgumentSyntax, T>> newExpression,
             FilterScope scope)
             where T : IFilter
